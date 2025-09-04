@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "246742686232",
+    "project_id": "fin-assist-ae064",
+    "storage_bucket": "fin-assist-ae064.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246742686232:android:c2b882d8f350220b0f416d",
+        "android_client_info": {
+          "package_name": "com.example.fin_assist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM_JZX581BU53UL0XtaGDU-yegZ_6z4OM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

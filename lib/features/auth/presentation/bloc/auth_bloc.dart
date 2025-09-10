@@ -18,7 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc({required this.repository}) : super(AuthInitial()) {
     on<AuthEvent>((event, emit) {});
-    on<RegisterEvent>(_onRegister);
+    //on<RegisterEvent>(_onRegister);
     on<LoginWithEmailAndPassEvent>(_onLoginWithEmailAndPass);
     on<LoginWithGoogleEvent>(_onLoginWithGoogle);
     on<LogoutEvent>(_onLogout);
@@ -26,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<ForgotPasswordEvent>(_onForgotPassword);
   }
 
-  Future<void> _onRegister(RegisterEvent event, Emitter emit) async {
+ /* Future<void> _onRegister(RegisterEvent event, Emitter emit) async {
     emit(AuthLoading());
     try {
       print('AuthBLoc: Register request for email: ${event.email}');
@@ -43,7 +43,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       print('AuthBloc: Register error: $e');
       emit(AuthError(message: e.toString()));
     }
-  }
+  }*/
 
   Future<void> _onLoginWithEmailAndPass(
     LoginWithEmailAndPassEvent event,

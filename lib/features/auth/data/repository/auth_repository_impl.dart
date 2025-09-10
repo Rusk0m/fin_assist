@@ -14,7 +14,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required this.googleSignIn,
   });
 
-  @override
+  /*@override
   Future<UserEntity> registration({
     required String name,
     required String email,
@@ -31,7 +31,6 @@ class AuthRepositoryImpl implements AuthRepository {
         id: user.uid,
         email: user.email!,
         name: user.displayName,
-        token: await user.getIdToken(),
       );
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw AuthFailure(message: _mapFirebaseErrorToMessage(e));
@@ -39,7 +38,7 @@ class AuthRepositoryImpl implements AuthRepository {
       throw ServerFailure(message: e.toString());
     }
   }
-
+*/
   @override
   Future<UserEntity> logInWithEmailAndPassword({
     required String email,
@@ -52,10 +51,11 @@ class AuthRepositoryImpl implements AuthRepository {
       );
       final user = credential.user!;
       return UserEntity(
-        id: user.uid,
+        uid: user.uid,
         email: user.email!,
         name: user.displayName,
-        token: await user.getIdToken(),
+        role: user.role,
+        organizations: user.
       );
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw AuthFailure(message: _mapFirebaseErrorToMessage(e));
@@ -82,7 +82,6 @@ class AuthRepositoryImpl implements AuthRepository {
         id: user.uid,
         email: user.email!,
         name: user.displayName,
-        token: await user.getIdToken(),
       );
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw AuthFailure(message: _mapFirebaseErrorToMessage(e));
@@ -109,7 +108,6 @@ class AuthRepositoryImpl implements AuthRepository {
         id: user.uid,
         email: user.email!,
         name: user.displayName,
-        token: await user.getIdToken(),
       );
     } catch (e) {
       return null;

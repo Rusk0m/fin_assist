@@ -10,5 +10,5 @@ void main()async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setupDependencies();
-  runApp( App());
+  runApp(App());
 }

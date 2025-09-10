@@ -113,6 +113,61 @@ class S {
       args: [],
     );
   }
+
+  /// `Registration`
+  String get Registration {
+    return Intl.message(
+      'Registration',
+      name: 'Registration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get Name {
+    return Intl.message('Name', name: 'Name', desc: '', args: []);
+  }
+
+  /// `Registration`
+  String get registration {
+    return Intl.message(
+      'Registration',
+      name: 'registration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message('Name', name: 'name', desc: '', args: []);
+  }
+
+  /// `Fill in all fields`
+  String get fillInAllFields {
+    return Intl.message(
+      'Fill in all fields',
+      name: 'fillInAllFields',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get register {
+    return Intl.message('Register', name: 'register', desc: '', args: []);
+  }
+
+  /// `Already have an account? Login.`
+  String get haveAnAccount {
+    return Intl.message(
+      'Already have an account? Login.',
+      name: 'haveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

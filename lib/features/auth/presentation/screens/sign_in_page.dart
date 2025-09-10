@@ -1,3 +1,4 @@
+import 'package:fin_assist/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fin_assist/features/auth/presentation/bloc/auth_bloc.dart';
@@ -12,7 +13,7 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Регистрация')),
+      appBar: AppBar(title: Text(S.of(context).registration)),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthAuthenticated) {
@@ -35,18 +36,18 @@ class SignInPage extends StatelessWidget {
                 children: [
                   TextField(
                     controller: nameController,
-                    decoration: const InputDecoration(labelText: 'Имя'),
+                    decoration: InputDecoration(labelText: S.of(context).name),
                   ),
                   const SizedBox(height: 16),
                   TextField(
                     controller: emailController,
-                    decoration: const InputDecoration(labelText: 'Email'),
+                    decoration: InputDecoration(labelText: S.of(context).email),
                     keyboardType: TextInputType.emailAddress,
                   ),
                   const SizedBox(height: 16),
                   TextField(
                     controller: passwordController,
-                    decoration: const InputDecoration(labelText: 'Пароль'),
+                    decoration:  InputDecoration(labelText: S.of(context).password),
                     obscureText: true,
                   ),
                   const SizedBox(height: 24),
@@ -65,16 +66,16 @@ class SignInPage extends StatelessWidget {
                         );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Заполните все поля')),
+                          SnackBar(content: Text(S.of(context).fillInAllFields)),
                         );
                       }
                     },
-                    child: const Text('Зарегистрироваться'),
+                    child: Text(S.of(context).register),
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.login),
-                    label: const Text('Войти через Google'),
+                    label: Text(S.of(context).signInWithGoogle),
                     onPressed: () {
                       context.read<AuthBloc>().add(LoginWithGoogleEvent());
                     },
@@ -84,7 +85,7 @@ class SignInPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/login_page');
                     },
-                    child: const Text('Уже есть аккаунт? Войти'),
+                    child: Text(S.of(context).haveAnAccount),
                   ),
                 ],
               ),

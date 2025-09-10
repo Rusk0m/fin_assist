@@ -27,7 +27,7 @@ void setupDependencies() async {
   //Use cases
   //Auth use-case
   getIt.registerSingleton<LoginUseCase>(LoginUseCase(getIt<AuthRepository>()));
-  getIt.registerSingleton<RegisterUseCase>(RegisterUseCase(getIt<AuthRepository>()));
+  //getIt.registerSingleton<RegisterUseCase>(RegisterUseCase(getIt<AuthRepository>()));
   getIt.registerSingleton<LogoutUseCase>(LogoutUseCase(getIt<AuthRepository>()));
   getIt.registerSingleton<CheckAuthStatusUseCase>(CheckAuthStatusUseCase(getIt<AuthRepository>()));
   getIt.registerSingleton<ForgotPasswordUseCase>(ForgotPasswordUseCase(getIt<AuthRepository>()));

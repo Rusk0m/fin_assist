@@ -2,11 +2,11 @@ import 'package:fin_assist/core/entities/user.dart';
 import 'package:flutter/material.dart';
 
 abstract class AuthRepository {
-  Future<UserEntity> registration({
+  /*Future<UserEntity> registration({
     required String name,
     required String email,
     required String password,
-  });
+  });*/
 
   Future<UserEntity> logInWithEmailAndPassword({
     required String email,

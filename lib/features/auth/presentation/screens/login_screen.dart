@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text('Login'),
+                    child: Text(S.of(context).login),
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -69,13 +69,13 @@ class LoginScreen extends StatelessWidget {
                       );
                     },
                     child: Text(S.of(context).forgotPassword),
-                  ),
+                  ),/*
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pushNamedAndRemoveUntil('/signup_page',(Route<dynamic> route) => false);
                     },
                     child: Text(S.of(context).noAccountRegister),
-                  ),
+                  ),*/
                 ],
               ),
             );

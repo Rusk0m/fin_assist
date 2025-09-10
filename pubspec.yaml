@@ -15,7 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_bloc: ^9.1.1
   json_serializable: ^6.10.0
-  json_annotation:
+  json_annotation: ^4.9.0
   equatable:
   get_it:
   dio:
@@ -26,6 +26,7 @@ dependencies:
   firebase_core: ^4.1.0
   firebase_auth: ^6.0.2
   google_sign_in: ^6.2.1
+  cloud_firestore: ^6.0.1
 
 dev_dependencies:
   flutter_test:

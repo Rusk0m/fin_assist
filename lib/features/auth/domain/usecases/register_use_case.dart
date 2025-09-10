@@ -1,3 +1,4 @@
+/*
 import 'package:dartz/dartz.dart';
 import 'package:fin_assist/core/entities/user.dart';
 import 'package:fin_assist/core/error/failures.dart';
@@ -32,3 +33,4 @@ class RegisterParams {
     required this.password,
   });
 }
+*/

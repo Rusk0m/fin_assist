@@ -4,6 +4,7 @@ import 'package:fin_assist/domain/entity/organization.dart';
 
 abstract class UserRepository {
   Future<UserEntity> getUserById(String uid);
-  Future<List<Organization>> getUserOrganisation(String uid);
+  Future<List<Organization>> getUserOrganization(String uid);
   Future<List<Branch>> getUserBranches(String uid);
+  Future<void> updateUser(UserEntity updatedUser);
 }

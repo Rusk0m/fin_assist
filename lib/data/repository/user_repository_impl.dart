@@ -19,7 +19,9 @@ class UserRepositoryImpl implements UserRepository {
           .where('managerId', isEqualTo: uid)
           .get();
 
-      return snapshot.docs.map((doc) => BranchModel.fromJson(doc.data())).toList();
+      return snapshot.docs
+          .map((doc) => BranchModel.fromJson(doc.data()))
+          .toList();
     } catch (e) {
       print('Error: $e');
       return [];
@@ -42,7 +44,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<List<Organization>> getUserOrganisation(String uid) async {
+  Future<List<Organization>> getUserOrganization(String uid) async {
     try {
       final snapshot = await firestore
           .collection('organizations')
@@ -55,6 +57,20 @@ class UserRepositoryImpl implements UserRepository {
     } catch (e) {
       print('Error: $e');
       return [];
+    }
+  }
+
+  @override
+  Future<void> updateUser(UserEntity user) async {
+    try {
+      await firestore.collection('users').doc(user.uid).update({
+        'name': user.name,
+        'email': user.email,
+        'role': user.role,
+        'organizations': user.organizations,
+      });
+    } catch (e) {
+      throw Exception('Failed to update user: $e');
     }
   }
 }

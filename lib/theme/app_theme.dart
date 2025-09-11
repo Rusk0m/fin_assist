@@ -20,7 +20,7 @@ final darkTheme = ThemeData(
   useMaterial3: true,
   textTheme: textTheme,
   focusColor: primaryColor,
-  scaffoldBackgroundColor: Colors.black,
+  scaffoldBackgroundColor: Colors.black54,
   colorScheme: ColorScheme.fromSeed(
     brightness: Brightness.dark,
     seedColor: primaryColor,

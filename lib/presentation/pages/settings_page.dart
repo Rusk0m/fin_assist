@@ -1,5 +1,6 @@
 import 'package:fin_assist/generated/l10n.dart';
 import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:fin_assist/theme/cubit/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,12 +9,18 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkTheme = context.watch<ThemeCubit>().state.isDark;
+    final sendNotification = false;
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         print('SettingsPage: State changed to $state');
         if (state is AuthUnauthenticated) {
           print('SettingsPage: Navigating to /login_page');
-          Navigator.pushNamedAndRemoveUntil(context, '/login_page', (Route<dynamic> route) => false);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            '/login_page',
+            (Route<dynamic> route) => false,
+          );
         } else if (state is AuthError) {
           print('SettingsPage: Auth error: ${state.message}');
           ScaffoldMessenger.of(
@@ -60,52 +67,83 @@ class SettingsPage extends StatelessWidget {
               child: Text(S.of(context).otherSettings),
             ),
             Card(
+              margin: EdgeInsetsGeometry.symmetric(horizontal: 12),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(width: 1.5, color: Colors.white24),
+                borderRadius: BorderRadiusGeometry.all(Radius.circular(12)),
+              ),
               child: Column(
                 children: [
-                  SizedBox(height: 8,),
+                  SizedBox(height: 8),
                   SettingsRowButton(
                     iconData: Icons.person,
-                    titleButton: S.of(context).profileDetails,
+                    title: S.of(context).profileDetails,
                   ),
-                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Divider(),
+                  ),
                   SettingsRowButton(
                     iconData: Icons.password_outlined,
-                    titleButton: S.of(context).password,
+                    title: S.of(context).password,
                   ),
-                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Divider(),
+                  ),
                   SettingsRowButton(
                     iconData: Icons.notifications_active_outlined,
-                    titleButton: S.of(context).notifications,
+                    title: S.of(context).notifications,
+                    value: sendNotification,
                   ),
-                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Divider(),
+                  ),
                   SettingsRowButton(
                     iconData: Icons.nightlight_round_outlined,
-                    titleButton: S.of(context).darkMode,
+                    title: S.of(context).darkMode,
+                    value: isDarkTheme,
+                    onChanged: (value) {
+                      print(value);
+                      _setThemeBrightness(context, value);
+                    },
                   ),
-                  SizedBox(height: 8,),
+                  SizedBox(height: 8),
                 ],
               ),
             ),
             SizedBox(height: 40),
             Card(
+              margin: EdgeInsetsGeometry.symmetric(horizontal: 12),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(width: 1.5, color: Colors.white24),
+                borderRadius: BorderRadiusGeometry.all(Radius.circular(12)),
+              ),
               child: Column(
                 children: [
-                  SizedBox(height: 8,),
+                  SizedBox(height: 8),
                   SettingsRowButton(
                     iconData: Icons.help_center_outlined,
-                    titleButton: S.of(context).aboutApplication,
+                    title: S.of(context).aboutApplication,
                   ),
-                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Divider(),
+                  ),
                   SettingsRowButton(
                     iconData: Icons.message,
-                    titleButton: S.of(context).helpfaq,
+                    title: S.of(context).helpfaq,
                   ),
-                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Divider(),
+                  ),
                   SettingsRowButton(
                     iconData: Icons.delete,
-                    titleButton: S.of(context).deactivateMyAccount,
+                    title: S.of(context).deactivateMyAccount,
                   ),
-                  SizedBox(height: 8,),
+                  SizedBox(height: 8),
                 ],
               ),
             ),
@@ -114,46 +152,54 @@ class SettingsPage extends StatelessWidget {
       ),
     );
   }
+
+  void _setThemeBrightness(BuildContext context, bool value) {
+    context.read<ThemeCubit>().setThemeBrightness(
+      value ? Brightness.dark : Brightness.light,
+    );
+  }
 }
 
 class SettingsRowButton extends StatelessWidget {
   final IconData iconData;
-  final String titleButton;
-  final bool? onSwitch;
+  final String title;
+  final bool? value;
+  final ValueChanged<bool>? onChanged;
 
   const SettingsRowButton({
     super.key,
     required this.iconData,
-    required this.titleButton,
-    this.onSwitch,
+    required this.title,
+    this.value,
+    this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            IconButton(onPressed: () {}, icon: Icon(iconData)),
-            Text(titleButton),
-          ],
-        ),
-        if (onSwitch == null) ...{
-          GestureDetector(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Icon(Icons.arrow_forward_ios_outlined),
-            ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              IconButton(onPressed: () {}, icon: Icon(iconData)),
+              Text(title),
+            ],
           ),
-        } else ...{
-          /*Switch(
-            value: (ThemeState.isDark),
-            onChanged: ,
-          )*/
-        },
-      ],
+          if (value == null) ...{
+            GestureDetector(
+              onTap: () {},
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Icon(Icons.arrow_forward_ios_outlined),
+              ),
+            ),
+          } else ...{
+            Switch(value: value!, onChanged: onChanged),
+          },
+        ],
+      ),
     );
   }
 }

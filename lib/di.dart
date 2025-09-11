@@ -1,40 +1,154 @@
-import 'package:fin_assist/domain/repository/auth_repository.dart';
-import 'package:fin_assist/data/repository/auth_repository_impl.dart';
-import 'package:fin_assist/domain/use_case/auth_use_case/check_auth_status_usecase.dart';
-import 'package:fin_assist/domain/use_case/auth_use_case/forgot_password_usecase.dart';
-import 'package:fin_assist/domain/use_case/auth_use_case/google_login_usecase.dart';
-import 'package:fin_assist/domain/use_case/auth_use_case/login_usecase.dart';
-import 'package:fin_assist/domain/use_case/auth_use_case/logout_usecase.dart';
-import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart' show AuthBloc;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fin_assist/domain/services/economic_indicators_service.dart';
+import 'package:fin_assist/domain/use_case/branch_use_case/use_cases.dart';
+import 'package:fin_assist/domain/use_case/organization_use_case/use_cases.dart';
+import 'package:fin_assist/domain/use_case/user_use_case/get_user_branches_usecase.dart';
+import 'package:fin_assist/domain/use_case/user_use_case/get_user_by_id_usecase.dart';
+import 'package:fin_assist/domain/use_case/user_use_case/get_user_organization_usecase.dart';
+import 'package:fin_assist/domain/use_case/user_use_case/update_user_usecase.dart';
+import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:fin_assist/presentation/blocs/dashboard_cubit/dashboard_cubit.dart';
+import 'package:fin_assist/presentation/blocs/financial_report_bloc/financial_report_bloc.dart';
+import 'package:fin_assist/presentation/blocs/user_bloc/user_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'data/repository/repositories_impl.dart';
+import 'domain/repository/repositories.dart';
+import 'domain/use_case/auth_use_case/usecases.dart';
+import 'domain/use_case/financial_report_use_case/use_cases.dart';
 
 final getIt = GetIt.instance;
 
 void setupDependencies() async {
-
-  getIt.registerSingleton<firebase_auth.FirebaseAuth>(firebase_auth.FirebaseAuth.instance);
+  getIt.registerSingleton<firebase_auth.FirebaseAuth>(
+    firebase_auth.FirebaseAuth.instance,
+  );
   getIt.registerSingleton<GoogleSignIn>(GoogleSignIn());
+  getIt.registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
 
-  // Repository
+  //-------------------------Services------------------------------
+  getIt.registerSingleton<EconomicIndicatorsService>(
+    EconomicIndicatorsService(),
+  );
+
+  //------------------------Repository--------------------------
   getIt.registerSingleton<AuthRepository>(
     AuthRepositoryImpl(
       firebaseAuth: getIt<firebase_auth.FirebaseAuth>(),
       googleSignIn: getIt<GoogleSignIn>(),
     ),
   );
-  //Use cases
+  getIt.registerSingleton<BranchRepository>(
+    BranchRepositoryImpl(getIt<FirebaseFirestore>()),
+  );
+
+  getIt.registerSingleton<OrganizationRepository>(
+    OrganizationRepositoryImpl(getIt<FirebaseFirestore>()),
+  );
+
+  getIt.registerSingleton<FinancialReportRepository>(
+    FinancialReportRepositoryImpl(getIt<FirebaseFirestore>()),
+  );
+
+  getIt.registerSingleton<UserRepository>(
+    UserRepositoryImpl(firestore: getIt<FirebaseFirestore>()),
+  );
+
+  //------------------Use cases------------------------
   //Auth use-case
   getIt.registerSingleton<LoginUseCase>(LoginUseCase(getIt<AuthRepository>()));
   //getIt.registerSingleton<RegisterUseCase>(RegisterUseCase(getIt<AuthRepository>()));
-  getIt.registerSingleton<LogoutUseCase>(LogoutUseCase(getIt<AuthRepository>()));
-  getIt.registerSingleton<CheckAuthStatusUseCase>(CheckAuthStatusUseCase(getIt<AuthRepository>()));
-  getIt.registerSingleton<ForgotPasswordUseCase>(ForgotPasswordUseCase(getIt<AuthRepository>()));
-  getIt.registerSingleton<GoogleLoginUseCase>(GoogleLoginUseCase(getIt<AuthRepository>()));
+  getIt.registerSingleton<LogoutUseCase>(
+    LogoutUseCase(getIt<AuthRepository>()),
+  );
+  getIt.registerSingleton<CheckAuthStatusUseCase>(
+    CheckAuthStatusUseCase(getIt<AuthRepository>()),
+  );
+  getIt.registerSingleton<ForgotPasswordUseCase>(
+    ForgotPasswordUseCase(getIt<AuthRepository>()),
+  );
+  getIt.registerSingleton<GoogleLoginUseCase>(
+    GoogleLoginUseCase(getIt<AuthRepository>()),
+  );
 
-  // BLoC
-  getIt.registerSingleton<AuthBloc>(AuthBloc(repository: getIt<AuthRepository>()));
+  //Branch use-case
+  getIt.registerSingleton<AddBranchUseCase>(
+    AddBranchUseCase(branchRepository: getIt<BranchRepository>()),
+  );
+  getIt.registerSingleton<GetBranchByIdUseCase>(
+    GetBranchByIdUseCase(branchRepository: getIt<BranchRepository>()),
+  );
+  getIt.registerSingleton<GetBranchesByOrganizationsUseCase>(
+    GetBranchesByOrganizationsUseCase(
+      branchRepository: getIt<BranchRepository>(),
+    ),
+  );
 
+  //Financial report use-case
+  getIt.registerSingleton<GetEconomicIndicatorsForBranchUseCase>(
+    GetEconomicIndicatorsForBranchUseCase(
+      service: getIt<EconomicIndicatorsService>(),
+      repository: getIt<FinancialReportRepository>(),
+    ),
+  );
+  getIt.registerSingleton<GetLatestReportUseCase>(
+    GetLatestReportUseCase(
+      financialReportRepository: getIt<FinancialReportRepository>(),),
+  );
+  getIt.registerSingleton<GetReportByPeriodUseCase>(
+    GetReportByPeriodUseCase(
+      financialReportRepository: getIt<FinancialReportRepository>(),),
+  );
+  getIt.registerSingleton<GetReportsByBranchUseCase>(
+    GetReportsByBranchUseCase(
+      financialReportRepository: getIt<FinancialReportRepository>(),),
+  );
+  getIt.registerSingleton<SubmitReportUseCase>(
+    SubmitReportUseCase(
+      financialReportRepository: getIt<FinancialReportRepository>(),),
+  );
+
+  //Organization use-case
+  getIt.registerSingleton<AddOrganizationUseCase>(
+      AddOrganizationUseCase(getIt<OrganizationRepository>())
+  );
+  getIt.registerSingleton<GetOrganizationByIdUseCase>(
+      GetOrganizationByIdUseCase(getIt<OrganizationRepository>())
+  );
+  getIt.registerSingleton<GetOrganizationsByOwnerIdUseCase>(
+      GetOrganizationsByOwnerIdUseCase(getIt<OrganizationRepository>())
+  );
+
+  //User use-case
+  getIt.registerSingleton<GetUserBranchesUseCase>(
+      GetUserBranchesUseCase(userRepository: getIt<UserRepository>())
+  );
+  getIt.registerSingleton<GetUserByIdUseCase>(
+      GetUserByIdUseCase(userRepository: getIt<UserRepository>())
+  );
+  getIt.registerSingleton<GetUserOrganizationUseCase>(
+      GetUserOrganizationUseCase(userRepository: getIt<UserRepository>())
+  );
+  getIt.registerSingleton<UpdateUserUseCase>(
+      UpdateUserUseCase(userRepository: getIt<UserRepository>())
+  );
+
+  // --------------------------BLoC-----------------------------
+  getIt.registerSingleton<AuthBloc>(
+    AuthBloc(repository: getIt<AuthRepository>()),
+  );
+
+  getIt.registerSingleton<DashboardCubit>(
+      DashboardCubit()
+  );
+
+  getIt.registerSingleton <FinancialReportBloc>(
+      FinancialReportBloc()
+  );
+
+  getIt.registerSingleton<UserBloc>(
+      UserBloc()
+  );
 }

@@ -9,10 +9,7 @@ class AuthRepositoryImpl implements AuthRepository {
   final firebase_auth.FirebaseAuth firebaseAuth;
   final GoogleSignIn googleSignIn;
 
-  AuthRepositoryImpl({
-    required this.firebaseAuth,
-    required this.googleSignIn,
-  });
+  AuthRepositoryImpl({required this.firebaseAuth, required this.googleSignIn});
 
   /*@override
   Future<UserEntity> registration({
@@ -40,7 +37,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 */
   @override
-  Future<UserEntity> logInWithEmailAndPassword({
+  Future<String> logInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -50,19 +47,8 @@ class AuthRepositoryImpl implements AuthRepository {
         password: password,
       );
       final user = credential.user!;
-      final userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
 
-      if (!userDoc.exists) {
-        throw AuthFailure(message: "Профиль пользователя не найден в Firestore");
-      }
-
-      return UserEntity(
-        uid: user.uid,
-        email: user.email!,
-        name: user.displayName,
-        role: userDoc.data()!["role"] as String,
-        organizations: List<String>.from(userDoc.data()!["organizations"]??[]),
-      );
+      return user.uid;
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw AuthFailure(message: _mapFirebaseErrorToMessage(e));
     } catch (e) {
@@ -71,7 +57,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserEntity> logInWithGoogle() async {
+  Future<String> logInWithGoogle() async {
     try {
       final googleUser = await googleSignIn.signIn();
       if (googleUser == null) {
@@ -83,22 +69,11 @@ class AuthRepositoryImpl implements AuthRepository {
         idToken: googleAuth.idToken,
       );
       final userCredential = await firebaseAuth.signInWithCredential(
-          credential);
+        credential,
+      );
       final user = userCredential.user!;
 
-      final userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
-
-      if (!userDoc.exists) {
-        throw AuthFailure(message: "Профиль пользователя не найден в Firestore");
-      }
-      print("Firestore user data: ${userDoc.data()}");
-      return UserEntity(
-        uid: user.uid,
-        email: user.email!,
-        name: user.displayName,
-        role: userDoc.data()!["role"] as String,
-        organizations: List<String>.from(userDoc.data()!["organizations"]??[]),
-      );
+      return user.uid;
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw AuthFailure(message: _mapFirebaseErrorToMessage(e));
     } catch (e) {
@@ -117,23 +92,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserEntity?> checkAuthStatus() async {
+  Future<String?> checkAuthStatus() async {
     try {
-      final user = firebaseAuth.currentUser;
-      if (user == null) return null;
-      final userDoc = await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
-
-      if (!userDoc.exists) {
-        throw AuthFailure(message: "Профиль пользователя не найден в Firestore");
-      }
-
-      return UserEntity(
-        uid: user.uid,
-        email: user.email!,
-        name: user.displayName,
-        role: userDoc.data()!["role"] as String,
-        organizations: List<String>.from(userDoc.data()!["organizations"]??[]),
-      );
+      return firebaseAuth.currentUser?.uid;
     } catch (e) {
       return null;
     }

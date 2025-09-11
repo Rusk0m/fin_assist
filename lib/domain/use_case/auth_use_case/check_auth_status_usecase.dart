@@ -6,10 +6,10 @@ class CheckAuthStatusUseCase {
 
   CheckAuthStatusUseCase(this.repository);
 
-  Future<UserEntity?> call() async {
+  Future<String?> call() async {
     try {
-      final user = await repository.checkAuthStatus();
-      return user;
+      final uid = await repository.checkAuthStatus();
+      return uid;
     } catch (e) {
       throw ArgumentError(e.toString());
     }

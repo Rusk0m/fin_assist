@@ -6,13 +6,13 @@ class LoginUseCase {
 
   LoginUseCase(this.repository);
 
-  Future<UserEntity> call(LoginParams params) async {
+  Future<String> call(LoginParams params) async {
     try {
-      final user = await repository.logInWithEmailAndPassword(
+      final uid = await repository.logInWithEmailAndPassword(
         email: params.email,
         password: params.password,
       );
-      return user;
+      return uid;
     } catch (e) {
       throw ArgumentError(e.toString()) ;
     }

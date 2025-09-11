@@ -6,10 +6,10 @@ class GoogleLoginUseCase {
 
   GoogleLoginUseCase(this.repository);
 
-  Future<UserEntity> call() async {
+  Future<String> call() async {
     try {
-      final user = await repository.logInWithGoogle();
-      return user;
+      final uid = await repository.logInWithGoogle();
+      return uid;
     } catch (e) {
       throw ArgumentError(e);
     }

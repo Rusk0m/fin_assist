@@ -1,5 +1,4 @@
 import 'package:fin_assist/core/entities/user.dart';
-import 'package:flutter/material.dart';
 
 abstract class AuthRepository {
   /*Future<UserEntity> registration({
@@ -8,16 +7,16 @@ abstract class AuthRepository {
     required String password,
   });*/
 
-  Future<UserEntity> logInWithEmailAndPassword({
+  Future<String> logInWithEmailAndPassword({
     required String email,
     required String password,
   });
 
-  Future<UserEntity> logInWithGoogle();
+  Future<String> logInWithGoogle();
 
   Future<void> logOut();
 
-  Future<UserEntity?> checkAuthStatus();
+  Future<String?> checkAuthStatus();
 
   Future<void> forgotPassword({required String email});
 }

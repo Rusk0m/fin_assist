@@ -54,10 +54,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     try {
       print('AuthBloc: Login request for email: ${event.email}');
-      final user = await getIt<LoginUseCase>().call(
+      final uid = await getIt<LoginUseCase>().call(
         LoginParams(email: event.email, password: event.password),
       );
-      emit(AuthAuthenticated(user: user));
+      emit(AuthAuthenticated(uid: uid));
     } catch (e) {
       print('AuthBloc: Login with email and password error: $e');
       emit(AuthError(message: e.toString()));
@@ -71,9 +71,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     try {
       print('AuthBloc: Login with Google');
-      final user = await getIt<GoogleLoginUseCase>().call();
+      final uid = await getIt<GoogleLoginUseCase>().call();
 
-      emit(AuthAuthenticated(user: user));
+      emit(AuthAuthenticated(uid: uid));
     } catch (e) {
       print('AuthBloc: Login with Google error: $e');
       emit(AuthError(message: e.toString()));
@@ -96,9 +96,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   FutureOr<void> _onCheckAuthStatus(CheckAuthStatusEvent event, Emitter emit) async{
     emit(AuthLoading());
     try {
-      final user = await getIt<CheckAuthStatusUseCase>().call();
-      if(user!=null){
-        emit(AuthAuthenticated(user: user));
+      final uid = await getIt<CheckAuthStatusUseCase>().call();
+      if(uid!=null){
+        emit(AuthAuthenticated(uid: uid));
       }
       else {
         emit(AuthUnauthenticated());

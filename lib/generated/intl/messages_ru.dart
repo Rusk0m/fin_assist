@@ -24,6 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "Name": MessageLookupByLibrary.simpleMessage("Name"),
     "Registration": MessageLookupByLibrary.simpleMessage("Registration"),
+    "aboutApplication": MessageLookupByLibrary.simpleMessage(
+      "About application",
+    ),
+    "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
+    "deactivateMyAccount": MessageLookupByLibrary.simpleMessage(
+      "Deactivate my account",
+    ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "fillInAllFields": MessageLookupByLibrary.simpleMessage(
       "Fill in all fields",
@@ -31,17 +38,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "haveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? Login.",
     ),
+    "helpfaq": MessageLookupByLibrary.simpleMessage("Help/FAQ"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "noAccountRegister": MessageLookupByLibrary.simpleMessage(
       "No account? Register.",
     ),
+    "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+    "otherSettings": MessageLookupByLibrary.simpleMessage("Other settings"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordResetEmailSent": MessageLookupByLibrary.simpleMessage(
       "Password reset email sent",
     ),
+    "profileDetails": MessageLookupByLibrary.simpleMessage("Profile details"),
     "register": MessageLookupByLibrary.simpleMessage("Register"),
     "registration": MessageLookupByLibrary.simpleMessage("Registration"),
+    "settingsTitleAppBar": MessageLookupByLibrary.simpleMessage("Settings"),
     "signIn": MessageLookupByLibrary.simpleMessage("Регистрация"),
   };
 }

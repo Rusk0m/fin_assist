@@ -11,5 +11,13 @@
   "password": "Password",
   "fillInAllFields": "Fill in all fields",
   "register": "Register",
-  "haveAnAccount": "Already have an account? Login."
+  "haveAnAccount": "Already have an account? Login.",
+  "settingsTitleAppBar": "Settings",
+  "otherSettings": "Other settings",
+  "profileDetails": "Profile details",
+  "notifications": "Notifications",
+  "darkMode": "Dark mode",
+  "aboutApplication": "About application",
+  "helpfaq": "Help/FAQ",
+  "deactivateMyAccount": "Deactivate my account"
 }

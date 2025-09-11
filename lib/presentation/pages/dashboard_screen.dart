@@ -1,5 +1,8 @@
 import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:fin_assist/presentation/blocs/dashboard_cubit/dashboard_cubit.dart';
+import 'package:fin_assist/presentation/pages/analytics_page.dart';
+import 'package:fin_assist/presentation/pages/home_page.dart';
+import 'package:fin_assist/presentation/pages/report_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +24,7 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedTab = context.select(
-          (DashboardCubit cubit) => cubit.state.tab,
+      (DashboardCubit cubit) => cubit.state.tab,
     );
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
@@ -31,32 +34,19 @@ class DashboardView extends StatelessWidget {
           Navigator.of(context).pushReplacementNamed('/login_page');
         } else if (state is AuthError) {
           print('DashboardView: Auth error: ${state.message}');
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Hello'),
-          leading: IconButton(
-            onPressed: () {
-              print('DashboardView: Logout button pressed');
-              context.read<AuthBloc>().add(LogoutEvent());
-            },
-            icon: const Icon(Icons.logout),
-          ),
-        ),
-        body: SafeArea(
-          child: Container(
-            color: Colors.blueAccent,
-            child: const Center(
-              child: Text(
-                'Dashboard Content',
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
-            ),
-          ),
+        body: IndexedStack(
+          index: selectedTab.index,
+          children: [
+            HomePage(),
+            ReportListPage(),
+            AnalyticsPage(),
+          ],
         ),
         bottomNavigationBar: Container(
           decoration: const BoxDecoration(
@@ -69,7 +59,11 @@ class DashboardView extends StatelessWidget {
             },
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-              BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.list_alt),
+                label: 'Reports',
+              ),
+              BottomNavigationBarItem(icon: Icon(Icons.analytics),label: 'Analytics')
             ],
           ),
         ),

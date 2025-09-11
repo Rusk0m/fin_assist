@@ -168,6 +168,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Settings`
+  String get settingsTitleAppBar {
+    return Intl.message(
+      'Settings',
+      name: 'settingsTitleAppBar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other settings`
+  String get otherSettings {
+    return Intl.message(
+      'Other settings',
+      name: 'otherSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile details`
+  String get profileDetails {
+    return Intl.message(
+      'Profile details',
+      name: 'profileDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark mode`
+  String get darkMode {
+    return Intl.message('Dark mode', name: 'darkMode', desc: '', args: []);
+  }
+
+  /// `About application`
+  String get aboutApplication {
+    return Intl.message(
+      'About application',
+      name: 'aboutApplication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help/FAQ`
+  String get helpfaq {
+    return Intl.message('Help/FAQ', name: 'helpfaq', desc: '', args: []);
+  }
+
+  /// `Deactivate my account`
+  String get deactivateMyAccount {
+    return Intl.message(
+      'Deactivate my account',
+      name: 'deactivateMyAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

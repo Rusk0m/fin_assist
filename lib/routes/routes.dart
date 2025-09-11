@@ -1,7 +1,7 @@
-import 'package:fin_assist/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:fin_assist/features/auth/presentation/screens/login_screen.dart';
-import 'package:fin_assist/features/auth/presentation/screens/sign_in_page.dart';
-import 'package:fin_assist/features/dashboard/presentation/view/dashboard_screen.dart';
+import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:fin_assist/presentation/pages/dashboard_screen.dart';
+import 'package:fin_assist/presentation/pages/login_screen.dart';
+import 'package:fin_assist/presentation/pages/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

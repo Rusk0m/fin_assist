@@ -1,14 +1,15 @@
-
-import 'package:dio/dio.dart';
-import 'package:fin_assist/features/auth/domain/repository/auth_repository.dart';
-import 'package:fin_assist/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:fin_assist/domain/repository/auth_repository.dart';
+import 'package:fin_assist/data/repository/auth_repository_impl.dart';
+import 'package:fin_assist/domain/use_case/auth_use_case/check_auth_status_usecase.dart';
+import 'package:fin_assist/domain/use_case/auth_use_case/forgot_password_usecase.dart';
+import 'package:fin_assist/domain/use_case/auth_use_case/google_login_usecase.dart';
+import 'package:fin_assist/domain/use_case/auth_use_case/login_usecase.dart';
+import 'package:fin_assist/domain/use_case/auth_use_case/logout_usecase.dart';
+import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart' show AuthBloc;
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:hive/hive.dart';
 
-import 'features/auth/data/repository/auth_repository_impl.dart';
-import 'features/auth/domain/usecases/usecases.dart';
 
 final getIt = GetIt.instance;
 

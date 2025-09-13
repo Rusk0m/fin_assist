@@ -22,3 +22,4 @@ class UpdateUser extends UserEvent {
   @override
   List<Object?> get props => [updatedUser];
 }
+class ClearUser extends UserEvent {}

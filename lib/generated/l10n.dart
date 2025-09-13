@@ -238,6 +238,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Change Password`
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit profile`
+  String get editProfile {
+    return Intl.message(
+      'Edit profile',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid password`
+  String get invalidPassword {
+    return Intl.message(
+      'Invalid password',
+      name: 'invalidPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password updated`
+  String get passwordUpdated {
+    return Intl.message(
+      'Password updated',
+      name: 'passwordUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error Updating Password`
+  String get errorUpdatingPassword {
+    return Intl.message(
+      'Error Updating Password',
+      name: 'errorUpdatingPassword',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,6 +1,7 @@
 import 'package:fin_assist/app/app.dart';
 import 'package:fin_assist/di.dart';
 import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:fin_assist/presentation/blocs/user_bloc/user_bloc.dart';
 import 'package:fin_assist/theme/cubit/theme_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ void main() async {
         BlocProvider(
           create: (context) => getIt<AuthBloc>()..add(CheckAuthStatusEvent()),
         ),
+        BlocProvider(create: (_) => getIt<UserBloc>()),
       ],
       child: App(),
     ),

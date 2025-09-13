@@ -27,11 +27,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "aboutApplication": MessageLookupByLibrary.simpleMessage(
       "About application",
     ),
+    "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
     "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
     "deactivateMyAccount": MessageLookupByLibrary.simpleMessage(
       "Deactivate my account",
     ),
+    "editProfile": MessageLookupByLibrary.simpleMessage("Edit profile"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "errorUpdatingPassword": MessageLookupByLibrary.simpleMessage(
+      "Error Updating Password",
+    ),
     "fillInAllFields": MessageLookupByLibrary.simpleMessage(
       "Fill in all fields",
     ),
@@ -40,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Already have an account? Login.",
     ),
     "helpfaq": MessageLookupByLibrary.simpleMessage("Help/FAQ"),
+    "invalidPassword": MessageLookupByLibrary.simpleMessage("Invalid password"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "noAccountRegister": MessageLookupByLibrary.simpleMessage(
@@ -51,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordResetEmailSent": MessageLookupByLibrary.simpleMessage(
       "Password reset email sent",
     ),
+    "passwordUpdated": MessageLookupByLibrary.simpleMessage("Password updated"),
     "profileDetails": MessageLookupByLibrary.simpleMessage("Profile details"),
     "register": MessageLookupByLibrary.simpleMessage("Register"),
     "registration": MessageLookupByLibrary.simpleMessage("Registration"),

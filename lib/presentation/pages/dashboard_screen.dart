@@ -26,46 +26,32 @@ class DashboardView extends StatelessWidget {
     final selectedTab = context.select(
       (DashboardCubit cubit) => cubit.state.tab,
     );
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        print('DashboardView: State changed to $state');
-        if (state is AuthUnauthenticated) {
-          print('DashboardView: Navigating to /login_page');
-          Navigator.of(context).pushReplacementNamed('/login_page');
-        } else if (state is AuthError) {
-          print('DashboardView: Auth error: ${state.message}');
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
-        }
-      },
-      child: Scaffold(
-        body: IndexedStack(
-          index: selectedTab.index,
-          children: [
-            HomePage(),
-            ReportListPage(),
-            AnalyticsPage(),
-          ],
+    return Scaffold(
+      body: IndexedStack(
+        index: selectedTab.index,
+        children: [
+          HomePage(),
+          ReportListPage(),
+          AnalyticsPage(),
+        ],
+      ),
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          border: Border(top: BorderSide(color: Colors.grey, width: 1.5)),
         ),
-        bottomNavigationBar: Container(
-          decoration: const BoxDecoration(
-            border: Border(top: BorderSide(color: Colors.grey, width: 1.5)),
-          ),
-          child: BottomNavigationBar(
-            currentIndex: selectedTab.index,
-            onTap: (index) {
-              context.read<DashboardCubit>().setTab(DashboardTab.values[index]);
-            },
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.list_alt),
-                label: 'Reports',
-              ),
-              BottomNavigationBarItem(icon: Icon(Icons.analytics),label: 'Analytics')
-            ],
-          ),
+        child: BottomNavigationBar(
+          currentIndex: selectedTab.index,
+          onTap: (index) {
+            context.read<DashboardCubit>().setTab(DashboardTab.values[index]);
+          },
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list_alt),
+              label: 'Reports',
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.analytics),label: 'Analytics')
+          ],
         ),
       ),
     );

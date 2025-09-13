@@ -1,6 +1,4 @@
-import 'package:fin_assist/di.dart';
 import 'package:fin_assist/generated/l10n.dart';
-import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:fin_assist/routes/routes.dart';
 import 'package:fin_assist/theme/app_theme.dart';
 import 'package:fin_assist/theme/cubit/theme_cubit.dart';

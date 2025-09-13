@@ -13,7 +13,8 @@ final lightTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
     brightness: Brightness.light,
     seedColor: primaryColor,
-  ),
+    //onPrimary: Colors.white,
+  )
 );
 
 final darkTheme = ThemeData(

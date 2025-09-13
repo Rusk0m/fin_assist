@@ -148,7 +148,11 @@ void setupDependencies() async {
       FinancialReportBloc()
   );
 
-  getIt.registerSingleton<UserBloc>(
-      UserBloc()
+  getIt.registerFactory<UserBloc>(
+        () => UserBloc(
+      getUserUseCase: getIt<GetUserByIdUseCase>(),
+      authBloc: getIt<AuthBloc>(),
+    ),
   );
+
 }

@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fin_assist/core/entities/user.dart';
+import 'package:fin_assist/domain/repository/user_repository.dart';
 import 'package:fin_assist/domain/use_case/user_use_case/add_user_usecase.dart';
 import 'package:fin_assist/domain/use_case/user_use_case/update_user_usecase.dart';
 import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:get_it/get_it.dart';
 import '../../../di.dart';
 import '../../../domain/use_case/user_use_case/get_user_by_id_usecase.dart';
 
@@ -13,13 +15,13 @@ part 'user_event.dart';
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
+  final UserRepository userRepository;
   late final StreamSubscription authSubscription;
 
-
   UserBloc({
+    required this.userRepository,
     required AuthBloc authBloc,
   }) : super(UserInitial()) {
-    // Подписываемся на AuthBloc
     authSubscription = authBloc.stream.listen((authState) {
       if (authState is AuthAuthenticated) {
         add(LoadUser(authState.uid));
@@ -60,14 +62,16 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Future<void> _onAddUser(AddUser event, Emitter<UserState> emit) async {
     emit(UserLoading());
     try {
-      // Загружаем созданного пользователя
-      // Загружаем созданного пользователя
-      final newUser = getIt<GetUserByIdUseCase>().call(event.user.uid);
+      await GetIt.instance<AddUserUseCase>().call(event.user);
+
+      final newUser = await userRepository.getUserById(event.user.uid);
+      emit(UserLoaded(newUser));
       emit(UserLoaded(newUser as UserEntity));
     } catch (e) {
       emit(UserError('Не удалось создать пользователя: ${e.toString()}'));
     }
   }
+
   void _onClearUser(ClearUser event, Emitter<UserState> emit) {
     emit(UserInitial());
   }

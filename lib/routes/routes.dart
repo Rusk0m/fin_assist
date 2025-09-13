@@ -20,8 +20,6 @@ class AppRouter {
   static const String profileDetails = '/profile_details_page';
   static const String reportSelection = '/report_selection_page';
 
-
-
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case home:

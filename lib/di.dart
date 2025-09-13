@@ -166,7 +166,8 @@ void setupDependencies() async {
 
   getIt.registerFactory<UserBloc>(
         () => UserBloc(
-      authBloc: getIt<AuthBloc>(),
+          userRepository: getIt<UserRepository>(),
+          authBloc: getIt<AuthBloc>(),
     ),
   );
 

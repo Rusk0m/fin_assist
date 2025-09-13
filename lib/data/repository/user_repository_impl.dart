@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fin_assist/core/entities/user.dart';
 import 'package:fin_assist/data/model/branch_model/branch_model.dart';
 import 'package:fin_assist/data/model/organisation_model/organization_model.dart';
+import 'package:fin_assist/data/model/user_model/user_model.dart';
 import 'package:fin_assist/domain/entity/branch.dart';
 import 'package:fin_assist/domain/entity/organization.dart';
 import 'package:fin_assist/domain/repository/user_repository.dart';
@@ -71,6 +72,24 @@ class UserRepositoryImpl implements UserRepository {
       });
     } catch (e) {
       throw Exception('Failed to update user: $e');
+    }
+  }
+
+  @override
+  Future<void> addUser(UserEntity user) async {
+    try {
+      // Проверяем, существует ли пользователь
+      final userDoc = await firestore.collection('users').doc(user.uid).get();
+
+      if (userDoc.exists) {
+        throw Exception('Пользователь уже существует');
+      }
+
+      // Создаем пользователя с переданными данными
+      await firestore.collection('users').doc(user.uid).set(user.toJson());
+    } catch (e) {
+      print('Error adding user: $e');
+      throw Exception('Не удалось создать пользователя: $e');
     }
   }
 }

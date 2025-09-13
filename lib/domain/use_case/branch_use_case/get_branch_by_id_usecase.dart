@@ -5,6 +5,7 @@ class GetBranchByIdUseCase {
   final BranchRepository branchRepository;
 
   GetBranchByIdUseCase({required this.branchRepository});
+
   Future<Branch?> call(String branchId) async {
     try {
       return branchRepository.getBranchById(branchId);

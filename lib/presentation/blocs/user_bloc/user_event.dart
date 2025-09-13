@@ -22,3 +22,12 @@ class UpdateUser extends UserEvent {
   @override
   List<Object?> get props => [updatedUser];
 }
+
+class AddUser extends UserEvent {
+  final UserEntity user;
+
+  AddUser(this.user);
+
+  @override
+  List<Object> get props => [user];
+}

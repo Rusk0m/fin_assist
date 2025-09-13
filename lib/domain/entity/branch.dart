@@ -6,7 +6,6 @@ class Branch extends Equatable{
   final String address;
   final String managerId;
   final String notes;
-  final DateTime createdAt;
   final String organizationId;
 
   const Branch({
@@ -15,11 +14,10 @@ class Branch extends Equatable{
     required this.address,
     required this.managerId,
     required this.notes,
-    required this.createdAt,
     required this.organizationId,
   });
 
   @override
   // TODO: implement props
-  List<Object?> get props => [branchId, name , address,managerId, notes, createdAt, organizationId];
+  List<Object?> get props => [branchId, name , address,managerId, notes, organizationId];
 }

@@ -7,4 +7,5 @@ abstract class UserRepository {
   Future<List<Organization>> getUserOrganization(String uid);
   Future<List<Branch>> getUserBranches(String uid);
   Future<void> updateUser(UserEntity updatedUser);
+  Future<void> addUser(UserEntity user);
 }

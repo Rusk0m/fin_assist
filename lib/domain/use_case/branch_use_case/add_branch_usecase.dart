@@ -1,3 +1,4 @@
+import 'package:fin_assist/data/model/branch_model/branch_model.dart';
 import 'package:fin_assist/domain/entity/branch.dart';
 import 'package:fin_assist/domain/repository/branch_repository.dart';
 

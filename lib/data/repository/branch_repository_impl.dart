@@ -17,7 +17,6 @@ class BranchRepositoryImpl implements BranchRepository {
       address: branch.address,
       managerId: branch.managerId,
       notes: branch.notes,
-      createdAt: branch.createdAt,
       organizationId: branch.organizationId,
     ).toJson());
   }

@@ -15,6 +15,28 @@ class UserEntity extends Equatable {
     required this.organizations,
   });
 
+  // Метод для преобразования объекта в Map (JSON)
+  Map<String, dynamic> toJson() {
+    return {
+      'uid': uid,
+      'email': email,
+      'name': name,
+      'role': role,
+      'organizations': organizations,
+    };
+  }
+
+  // Фабричный метод для создания объекта из Map (JSON)
+  factory UserEntity.fromJson(Map<String, dynamic> json) {
+    return UserEntity(
+      uid: json['uid'] ?? '',
+      email: json['email'] ?? '',
+      name: json['name'],
+      role: json['role'] ?? '',
+      organizations: List<String>.from(json['organizations'] ?? []),
+    );
+  }
+
   @override
   List<Object?> get props => [uid, email, name, role, organizations];
 }

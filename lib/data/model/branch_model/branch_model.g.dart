@@ -12,7 +12,6 @@ BranchModel _$BranchModelFromJson(Map<String, dynamic> json) => BranchModel(
   address: json['address'] as String,
   managerId: json['managerId'] as String,
   notes: json['notes'] as String,
-  createdAt: DateTime.parse(json['createdAt'] as String),
   organizationId: json['organizationId'] as String,
 );
 
@@ -23,6 +22,5 @@ Map<String, dynamic> _$BranchModelToJson(BranchModel instance) =>
       'address': instance.address,
       'managerId': instance.managerId,
       'notes': instance.notes,
-      'createdAt': instance.createdAt.toIso8601String(),
       'organizationId': instance.organizationId,
     };

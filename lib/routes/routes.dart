@@ -1,6 +1,7 @@
 import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:fin_assist/presentation/pages/dashboard_screen.dart';
 import 'package:fin_assist/presentation/pages/login_screen.dart';
+import 'package:fin_assist/presentation/pages/report_selection_page/reports_page.dart';
 import 'package:fin_assist/presentation/pages/settings_page.dart';
 import 'package:fin_assist/presentation/pages/sign_in_page.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class AppRouter {
   static const String home = '/';
   static const String signIn = '/signup_page';
   static const String logIn = '/login_page';
+  static const String report_selection_page = '/report_selection_page';
   static const String dashboard = '/dashboard_page';
   static const String settings_page = '/settings_page';
 
@@ -32,6 +34,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => SignInPage());
       case logIn:
         return MaterialPageRoute(builder: (_) => LoginScreen());
+      case report_selection_page:
+        return MaterialPageRoute(builder: (_) => ReportSelectionPage());
       case dashboard:
         return MaterialPageRoute(builder: (_) => const DashboardScreen());
       case settings_page:

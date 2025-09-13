@@ -21,5 +21,6 @@
   "darkMode": "Dark mode",
   "aboutApplication": "About application",
   "helpfaq": "Help/FAQ",
-  "deactivateMyAccount": "Deactivate my account"
+  "deactivateMyAccount": "Deactivate my account",
+  "organization": "Organization"
 }

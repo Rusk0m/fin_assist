@@ -11,7 +11,6 @@ class BranchModel extends Branch {
     required super.address,
     required super.managerId,
     required super.notes,
-    required super.createdAt,
     required super.organizationId,
   });
 
@@ -26,7 +25,6 @@ class BranchModel extends Branch {
     address: address,
     managerId: managerId,
     notes: notes,
-    createdAt: createdAt,
     organizationId: organizationId,
   );
 }

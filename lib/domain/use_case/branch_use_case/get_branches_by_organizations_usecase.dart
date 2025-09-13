@@ -4,7 +4,7 @@ import 'package:fin_assist/domain/repository/branch_repository.dart';
 class GetBranchesByOrganizationsUseCase {
   final BranchRepository branchRepository;
 
-  GetBranchesByOrganizationsUseCase(this.branchRepository);
+  GetBranchesByOrganizationsUseCase({required this.branchRepository});
 
   Future<List<Branch>?>call(String organizationId)async{
     try {

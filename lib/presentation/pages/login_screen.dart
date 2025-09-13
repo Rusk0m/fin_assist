@@ -1,9 +1,16 @@
+import 'dart:async';
+import 'package:fin_assist/core/entities/user.dart';
 import 'package:fin_assist/generated/l10n.dart';
 import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:fin_assist/presentation/blocs/user_bloc/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class LoginScreen extends StatelessWidget {
+  final getIt = GetIt.instance;
+  late final UserBloc userBloc = getIt<UserBloc>();
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -15,8 +22,9 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(title:  Text(S.of(context).login)),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state is AuthAuthenticated) {
-            Navigator.pushReplacementNamed(context, '/dashboard_page');
+          if (state is AuthAuthenticated){
+            userBloc.add(LoadUser(state.uid));
+            Navigator.pushReplacementNamed(context, '/report_selection_page');
           } else if (state is AuthError) {
             ScaffoldMessenger.of(
               context,
@@ -57,8 +65,28 @@ class LoginScreen extends StatelessWidget {
                     child: Text(S.of(context).login),
                   ),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async{
                       context.read<AuthBloc>().add(LoginWithGoogleEvent());
+
+                      final authStream = context.read<AuthBloc>().stream;
+                      StreamSubscription? subscription;
+
+                      subscription = authStream.listen((authState) {
+                        if (authState is AuthAuthenticated) {
+                          final newUser = UserEntity(
+                            uid: authState.uid,
+                            email: "",
+                            name: "",
+                            // email: authState.email ?? '',
+                            // name: authState.displayName ?? '',
+                            role: 'owner',
+                            organizations: [],
+                          );
+
+                          userBloc.add(AddUser(newUser));
+                          subscription?.cancel();
+                        }
+                      });
                     },
                     child:  Text(S.of(context).signInWithGoogle),
                   ),

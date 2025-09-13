@@ -43,3 +43,48 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Flutter
+**/flutter/generated_plugin_registrant.*
+**/generated_plugins.cmake
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+flutter/app.*
+flutter/Flutter.podspec
+flutter/Generated.xcconfig
+flutter/app.flx
+flutter/app.zip
+flutter/flutter_assets/
+flutter/flutter_export_environment.sh
+flutter/web/
+
+# Android
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+
+# iOS
+**/ios/Flutter/App.framework/
+**/ios/Flutter/Flutter.framework/
+**/ios/Flutter/GeneratedPluginRegistrant.*
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/Podfile.lock
+**/ios/Pods/
+
+# macOS
+**/macos/Flutter/GeneratedPluginRegistrant.*
+**/macos/Flutter/ephemeral/
+
+# Windows
+**/windows/flutter/generated_*
+**/windows/flutter/ephemeral/
+
+# Linux
+**/linux/flutter/generated_*
+**/linux/flutter/ephemeral/
+
+# Общие файлы зависимостей
+pubspec.lock

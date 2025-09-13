@@ -6,7 +6,7 @@ class GetBranchesByOrganizationsUseCase {
 
   GetBranchesByOrganizationsUseCase({required this.branchRepository});
 
-  Future<List<Branch>?>call(String organizationId)async{
+  Future<List<Branch>?> call(String organizationId)async{
     try {
       return branchRepository.getBranchesByOrganization(organizationId);
     } catch (e) {

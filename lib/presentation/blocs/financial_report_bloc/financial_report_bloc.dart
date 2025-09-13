@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fin_assist/domain/use_case/finantial_report_use_case/get_latest_report_usecase.dart';
-import 'package:fin_assist/domain/use_case/finantial_report_use_case/get_report_by_period_usecase.dart';
-import 'package:fin_assist/domain/use_case/finantial_report_use_case/get_reports_by_branch_usecase.dart';
-import 'package:fin_assist/domain/use_case/finantial_report_use_case/submit_report_usecase.dart';
+import 'package:fin_assist/domain/use_case/financial_report_use_case/get_latest_report_usecase.dart';
+import 'package:fin_assist/domain/use_case/financial_report_use_case/get_report_by_period_usecase.dart';
+import 'package:fin_assist/domain/use_case/financial_report_use_case/get_reports_by_branch_usecase.dart';
+import 'package:fin_assist/domain/use_case/financial_report_use_case/submit_report_usecase.dart';
 import 'package:get_it/get_it.dart';
 import 'package:fin_assist/domain/entity/financial_report.dart';
 

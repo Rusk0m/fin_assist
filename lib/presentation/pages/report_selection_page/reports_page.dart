@@ -44,21 +44,21 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:  Text("Выбор отчёта")),
+      appBar: AppBar(title: Text("Выбор отчёта")),
       body: MultiBlocListener(
         listeners: [
           BlocListener<OrganizationBloc, OrganizationState>(
             listener: (context, organizationState) {
-              if(organizationState is OrganizationErrorState){
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(SnackBar(content: Text(organizationState.message)));
+              if (organizationState is OrganizationErrorState) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(organizationState.message)),
+                );
               }
             },
           ),
           BlocListener<BranchBloc, BranchState>(
             listener: (context, branchState) {
-              if(branchState is BranchErrorState){
+              if (branchState is BranchErrorState) {
                 ScaffoldMessenger.of(
                   context,
                 ).showSnackBar(SnackBar(content: Text(branchState.message)));
@@ -67,7 +67,7 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
           ),
           BlocListener<FinancialReportBloc, FinancialReportState>(
             listener: (context, reportState) {
-              if(reportState is FinancialReportErrorState){
+              if (reportState is FinancialReportErrorState) {
                 ScaffoldMessenger.of(
                   context,
                 ).showSnackBar(SnackBar(content: Text(reportState.message)));
@@ -242,7 +242,10 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
                             selectionState.selectedBranch!.branchId,
                           ),
                         );
-                        Navigator.pushReplacementNamed(context, '/dashboard_page');
+                        Navigator.pushReplacementNamed(
+                          context,
+                          '/dashboard_page',
+                        );
                       }
                       return Center(child: CircularProgressIndicator());
                     },

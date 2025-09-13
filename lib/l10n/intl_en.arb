@@ -22,5 +22,13 @@
   "aboutApplication": "About application",
   "helpfaq": "Help/FAQ",
   "deactivateMyAccount": "Deactivate my account",
+<<<<<<< HEAD
   "organization": "Organization"
+=======
+  "changePassword": "Change Password",
+  "editProfile": "Edit profile",
+  "invalidPassword": "Invalid password",
+  "passwordUpdated": "Password updated",
+  "errorUpdatingPassword": "Error Updating Password"
+>>>>>>> new_branch
 }

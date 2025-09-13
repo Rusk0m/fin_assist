@@ -9,13 +9,17 @@ part of 'user_model.dart';
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
   uid: json['uid'] as String,
   email: json['email'] as String,
-  displayName: json['displayName'] as String,
-  createdAt: DateTime.parse(json['createdAt'] as String),
+  name: json['name'] as String,
+  role: json['role'] as String,
+  organizations: (json['organizations'] as List<dynamic>)
+      .map((e) => e as String)
+      .toList(),
 );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
   'uid': instance.uid,
   'email': instance.email,
-  'displayName': instance.displayName,
-  'createdAt': instance.createdAt.toIso8601String(),
+  'name': instance.name,
+  'role': instance.role,
+  'organizations': instance.organizations,
 };

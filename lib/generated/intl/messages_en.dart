@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "No account? Register.",
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+    "organization": MessageLookupByLibrary.simpleMessage("Organization"),
     "otherSettings": MessageLookupByLibrary.simpleMessage("Other settings"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordResetEmailSent": MessageLookupByLibrary.simpleMessage(

@@ -38,7 +38,6 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
 
   void _onTapReport(FinancialReportEntity report) {
     selectionBloc.add(SelectReport(report));
-    Navigator.pushReplacementNamed(context, '/dashboard_page');
   }
 
   @override
@@ -92,21 +91,31 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
                             builder: (context, organizationState) {
                               if (organizationState
                                   is OrganizationsLoadedState) {
-                                return ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount:
-                                      organizationState.organizations.length,
-                                  itemBuilder: (context, index) =>
-                                      SelectionCard(
-                                        onTap: () => _onTapOrganization(
-                                          organizationState
-                                              .organizations[index],
+                                if (organizationState
+                                    .organizations
+                                    .isNotEmpty) {
+                                  return ListView.builder(
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount:
+                                        organizationState.organizations.length,
+                                    itemBuilder: (context, index) =>
+                                        SelectionCard(
+                                          onTap: () => _onTapOrganization(
+                                            organizationState
+                                                .organizations[index],
+                                          ),
+                                          title: organizationState
+                                              .organizations[index]
+                                              .name,
                                         ),
-                                        title: organizationState
-                                            .organizations[index]
-                                            .name,
-                                      ),
+                                  );
+                                }
+                                return Center(
+                                  child: Text(
+                                    "У вас нет ни одной организации!!!",
+                                  ),
                                 );
                               } else if (organizationState
                                   is OrganizationInitial) {
@@ -212,56 +221,67 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
             ),
             BlocBuilder<SelectionBloc, SelectionState>(
               builder: (context, selectionState) {
-                if (selectionState.selectedBranch != null &&
-                    selectionState.selectedReport == null) {
-                  return BlocBuilder<FinancialReportBloc, FinancialReportState>(
-                    builder: (context, reportState) {
-                      if (reportState is FinancialReportsLoadedState) {
-                        if (reportState.reports.length > 1) {
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: reportState.reports.length,
-                            itemBuilder: (context, index) => SelectionCard(
-                              title: reportState.reports[index].reportId,
-                              onTap: () =>
-                                  _onTapReport(reportState.reports[index]),
-                            ),
-                          );
-                        } else if (reportState.reports.isNotEmpty) {
-                          selectionBloc.add(
-                            SelectReport(reportState.reports.first),
-                          );
-                        }
-                        return Center(
-                          child: Text("У вас нет ни одного отчёта!!!"),
-                        );
-                      } else if (reportState is FinancialReportInitial) {
-                        reportBloc.add(
-                          GetReportsByBranchEvent(
-                            selectionState.selectedBranch!.branchId,
-                          ),
-                        );
-                        Navigator.pushReplacementNamed(
-                          context,
-                          '/dashboard_page',
-                        );
-                      }
-                      return Center(child: CircularProgressIndicator());
-                    },
-                  );
-                } else if (selectionState.selectedReport != null) {
-                  return SelectionTitle(
-                    title: "Отчёт",
-                    selection: selectionState.selectedReport!.reportId,
-                    onTap: () {
-                      selectionBloc.add(ClearReport());
-                    },
+                if (selectionState.selectedBranch != null) {
+                  return FloatingActionButton(
+                    onPressed: () {Navigator.pushReplacementNamed(context, '/dashboard_page');},
+                    child: Text("Выбрать"),
                   );
                 }
-                return SizedBox(height: 0);
+                return const SizedBox(height: 0);
               },
             ),
+            // BlocBuilder<SelectionBloc, SelectionState>(
+            //   builder: (context, selectionState) {
+            //     if (selectionState.selectedBranch != null &&
+            //         selectionState.selectedReport == null) {
+            //       return BlocBuilder<FinancialReportBloc, FinancialReportState>(
+            //         builder: (context, reportState) {
+            //           if (reportState is FinancialReportsLoadedState) {
+            //             if (reportState.reports.length > 1) {
+            //               return ListView.builder(
+            //                 shrinkWrap: true,
+            //                 physics: const NeverScrollableScrollPhysics(),
+            //                 itemCount: reportState.reports.length,
+            //                 itemBuilder: (context, index) => SelectionCard(
+            //                   title: reportState.reports[index].reportId,
+            //                   onTap: () =>
+            //                       _onTapReport(reportState.reports[index]),
+            //                 ),
+            //               );
+            //             } else if (reportState.reports.isNotEmpty) {
+            //               selectionBloc.add(
+            //                 SelectReport(reportState.reports.first),
+            //               );
+            //             }
+            //             return Center(
+            //               child: Text("У вас нет ни одного отчёта!!!"),
+            //             );
+            //           } else if (reportState is FinancialReportInitial) {
+            //             reportBloc.add(
+            //               GetReportsByBranchEvent(
+            //                 selectionState.selectedBranch!.branchId,
+            //               ),
+            //             );
+            //             Navigator.pushReplacementNamed(
+            //               context,
+            //               '/dashboard_page',
+            //             );
+            //           }
+            //           return Center(child: CircularProgressIndicator());
+            //         },
+            //       );
+            //     } else if (selectionState.selectedReport != null) {
+            //       return SelectionTitle(
+            //         title: "Отчёт",
+            //         selection: selectionState.selectedReport!.reportId,
+            //         onTap: () {
+            //           selectionBloc.add(ClearReport());
+            //         },
+            //       );
+            //     }
+            //     return SizedBox(height: 0);
+            //   },
+            // ),
           ],
         ),
       ),

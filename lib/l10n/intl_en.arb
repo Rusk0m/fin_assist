@@ -22,13 +22,13 @@
   "aboutApplication": "About application",
   "helpfaq": "Help/FAQ",
   "deactivateMyAccount": "Deactivate my account",
-<<<<<<< HEAD
-  "organization": "Organization"
-=======
+  "organization": "Organization",
   "changePassword": "Change Password",
   "editProfile": "Edit profile",
   "invalidPassword": "Invalid password",
   "passwordUpdated": "Password updated",
-  "errorUpdatingPassword": "Error Updating Password"
->>>>>>> new_branch
+  "errorUpdatingPassword": "Error Updating Password",
+  "switchLocales": "Switch locales",
+  "enterNewName": "Enter new name",
+  "enterNewEmail": "Enter new email"
 }

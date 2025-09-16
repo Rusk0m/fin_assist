@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'firebase_options.dart';
+import 'locale/locale_cubit.dart';
 import 'presentation/blocs/branch_bloc/branch_bloc.dart';
 import 'presentation/blocs/financial_report_bloc/financial_report_bloc.dart';
 import 'presentation/blocs/organization_bloc/organization_bloc.dart';
@@ -19,7 +20,8 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => ThemeCubit()),
+        BlocProvider(create: (_) => getIt<ThemeCubit>()),
+        BlocProvider(create: (_) => getIt<LocaleCubit>()),
         BlocProvider(
           create: (context) => getIt<AuthBloc>()..add(CheckAuthStatusEvent()),
         ),
@@ -27,16 +29,13 @@ void main() async {
         BlocProvider<OrganizationBloc>(
           create: (context) => getIt<OrganizationBloc>(),
         ),
-        BlocProvider<BranchBloc>(
-          create: (context) => getIt<BranchBloc>(),
-        ),
+        BlocProvider<BranchBloc>(create: (context) => getIt<BranchBloc>()),
         BlocProvider<FinancialReportBloc>(
           create: (context) => getIt<FinancialReportBloc>(),
         ),
         BlocProvider<SelectionBloc>(
           create: (context) => getIt<SelectionBloc>(),
         ),
-        //BlocProvider(create: (_)=> getIt<LocaleCubit>())
       ],
       child: App(),
     ),

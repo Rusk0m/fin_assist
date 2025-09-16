@@ -95,6 +95,7 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
                   return BlocBuilder<UserBloc, UserState>(
                     builder: (context, userState) {
                       if (userState is UserLoaded) {
+                        print(userState.user.organizations.length);
                         if (userState.user.organizations.length > 1) {
                           return BlocBuilder<
                             OrganizationBloc,

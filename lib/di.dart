@@ -6,6 +6,7 @@ import 'package:fin_assist/domain/use_case/user_use_case/get_user_branches_useca
 import 'package:fin_assist/domain/use_case/user_use_case/get_user_by_id_usecase.dart';
 import 'package:fin_assist/domain/use_case/user_use_case/get_user_organization_usecase.dart';
 import 'package:fin_assist/domain/use_case/user_use_case/update_user_usecase.dart';
+import 'package:fin_assist/locale/locale_cubit.dart';
 import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:fin_assist/presentation/blocs/dashboard_cubit/dashboard_cubit.dart';
 import 'package:fin_assist/presentation/blocs/financial_report_bloc/financial_report_bloc.dart';
@@ -149,6 +150,9 @@ void setupDependencies() async {
   );
   getIt.registerSingleton<ThemeCubit>(
       ThemeCubit()
+  );
+  getIt.registerSingleton<LocaleCubit>(
+      LocaleCubit()
   );
 
   getIt.registerSingleton <FinancialReportBloc>(

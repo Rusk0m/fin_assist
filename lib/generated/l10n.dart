@@ -239,6 +239,16 @@ class S {
     );
   }
 
+  /// `Organization`
+  String get organization {
+    return Intl.message(
+      'Organization',
+      name: 'organization',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Change Password`
   String get changePassword {
     return Intl.message(
@@ -284,6 +294,36 @@ class S {
     return Intl.message(
       'Error Updating Password',
       name: 'errorUpdatingPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Switch locales`
+  String get switchLocales {
+    return Intl.message(
+      'Switch locales',
+      name: 'switchLocales',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter new name`
+  String get enterNewName {
+    return Intl.message(
+      'Enter new name',
+      name: 'enterNewName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter new email`
+  String get enterNewEmail {
+    return Intl.message(
+      'Enter new email',
+      name: 'enterNewEmail',
       desc: '',
       args: [],
     );

@@ -1,5 +1,6 @@
 import 'package:fin_assist/di.dart';
 import 'package:fin_assist/generated/l10n.dart';
+import 'package:fin_assist/presentation/pages/widgets/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -27,15 +28,15 @@ class ChangePasswordPage extends StatelessWidget {
                 isPassword: true,
               ),
               SizedBox(height: 24),*/
-              _customTextField(
-                newPasswordController: newPasswordController,
+              CustomTextField(
+                textEditingController: newPasswordController,
                 suffixIcon: Icons.remove_red_eye_outlined,
                 label: 'New Password',
                 isPassword: true,
               ),
               SizedBox(height: 24),
-              _customTextField(
-                newPasswordController: confirmPasswordController,
+              CustomTextField(
+                textEditingController: confirmPasswordController,
                 label: 'Confirm New Password',
                 isPassword: true,
               ),
@@ -89,59 +90,4 @@ Widget _updatePasswordButton(
     ),
     child: Text('Change Password'),
   );
-}
-
-class _customTextField extends StatefulWidget {
-  const _customTextField({
-    super.key,
-    required this.newPasswordController,
-    this.suffixIcon,
-    required this.label,
-    required this.isPassword,
-  });
-
-  final TextEditingController newPasswordController;
-  final IconData? suffixIcon;
-  final String label;
-  final bool isPassword;
-
-  @override
-  State<_customTextField> createState() => _customTextFieldState();
-}
-
-class _customTextFieldState extends State<_customTextField> {
-  bool _obscureText = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: widget.newPasswordController,
-      decoration: InputDecoration(
-        label: Text(widget.label),
-        suffixIcon: GestureDetector(
-          onTap: () {
-            setState(() {
-              _obscureText = !_obscureText;
-            });
-          },
-          child: Icon(
-            _obscureText
-                ? Icons.remove_red_eye_outlined
-                : Icons.remove_red_eye,
-          ),
-        ),
-        errorText:
-            widget.newPasswordController.text.length < 6 &&
-                widget.newPasswordController.text.isNotEmpty
-            ? S.of(context).invalidPassword
-            : null,
-      ),
-      obscureText: _obscureText,
-      enableSuggestions: !widget.isPassword,
-      autocorrect: !widget.isPassword,
-      keyboardType: widget.isPassword
-          ? TextInputType.visiblePassword
-          : TextInputType.emailAddress,
-    );
-  }
 }

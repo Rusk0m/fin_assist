@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "editProfile": MessageLookupByLibrary.simpleMessage("Edit profile"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "enterNewEmail": MessageLookupByLibrary.simpleMessage("Enter new email"),
+    "enterNewName": MessageLookupByLibrary.simpleMessage("Enter new name"),
     "errorUpdatingPassword": MessageLookupByLibrary.simpleMessage(
       "Error Updating Password",
     ),
@@ -67,5 +69,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "signInWithGoogle": MessageLookupByLibrary.simpleMessage(
       "Sign in with Google",
     ),
+    "switchLocales": MessageLookupByLibrary.simpleMessage("Switch locales"),
   };
 }

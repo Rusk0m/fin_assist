@@ -28,7 +28,6 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
 
   void _onTapOrganization(Organization organization) {
     selectionBloc.add(SelectOrganization(organization));
-    branchBloc.add(GetBranchesByOrganizationEvent(organization.organizationId));
   }
 
   void _onTapBranch(Branch branch) {
@@ -36,9 +35,9 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
     reportBloc.add(GetReportsByBranchEvent(branch.branchId));
   }
 
-  void _onTapReport(FinancialReportEntity report) {
-    selectionBloc.add(SelectReport(report));
-  }
+  // void _onTapReport(FinancialReportEntity report) {
+  //   selectionBloc.add(SelectReport(report));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +94,6 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
                   return BlocBuilder<UserBloc, UserState>(
                     builder: (context, userState) {
                       if (userState is UserLoaded) {
-                        print(userState.user.organizations.length);
                         if (userState.user.organizations.length > 1) {
                           return BlocBuilder<
                             OrganizationBloc,
@@ -133,8 +131,8 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
                               } else if (organizationState
                                   is OrganizationInitial) {
                                 organizationBloc.add(
-                                  GetOrganizationsByOwnerEvent(
-                                    userState.user.uid,
+                                  GetOrganizationsByListIdEvent(
+                                    userState.user.organizations,
                                   ),
                                 );
                               }
@@ -188,33 +186,48 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
               builder: (context, selectionState) {
                 if (selectionState.selectedOrganization != null &&
                     selectionState.selectedBranch == null) {
-                  return BlocBuilder<BranchBloc, BranchState>(
-                    builder: (context, branchState) {
-                      if (branchState is BranchesLoadedState) {
-                        if (branchState.branches.length > 1) {
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: branchState.branches.length,
-                            itemBuilder: (context, index) => SelectionCard(
-                              title: branchState.branches[index].name,
-                              onTap: () =>
-                                  _onTapBranch(branchState.branches[index]),
-                            ),
-                          );
-                        } else if (branchState.branches.isNotEmpty) {
-                          selectionBloc.add(
-                            SelectBranch(branchState.branches.first),
-                          );
-                        }
-                        return Center(
-                          child: Text("У вас нет ни одного филиала!!!"),
-                        );
-                      } else if (branchState is BranchInitial) {
-                        branchBloc.add(
-                          GetBranchesByOrganizationEvent(
-                            selectionState.selectedOrganization!.organizationId,
-                          ),
+                  return BlocBuilder<UserBloc, UserState>(
+                    builder: (context, userState) {
+                      if (userState is UserLoaded) {
+                        return BlocBuilder<BranchBloc, BranchState>(
+                          builder: (context, branchState) {
+                            if (branchState is BranchesLoadedState) {
+                              final List<Branch> branches = branchState.branches
+                                  .where(
+                                    (element) =>
+                                        element.organizationId ==
+                                        selectionState
+                                            .selectedOrganization!
+                                            .organizationId,
+                                  )
+                                  .toList();
+                              if (branches.length > 1) {
+                                return ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: branches.length,
+                                  itemBuilder: (context, index) =>
+                                      SelectionCard(
+                                        title: branches[index].name,
+                                        onTap: () =>
+                                            _onTapBranch(branches[index]),
+                                      ),
+                                );
+                              } else if (branches.isNotEmpty) {
+                                selectionBloc.add(SelectBranch(branches.first));
+                              }
+                              return Center(
+                                child: Text("У вас нет ни одного филиала!!!"),
+                              );
+                            } else if (branchState is BranchInitial) {
+                              branchBloc.add(
+                                GetBranchesByListIdEvent(
+                                  userState.user.branches,
+                                ),
+                              );
+                            }
+                            return Center(child: CircularProgressIndicator());
+                          },
                         );
                       }
                       return Center(child: CircularProgressIndicator());
@@ -236,7 +249,12 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
               builder: (context, selectionState) {
                 if (selectionState.selectedBranch != null) {
                   return FloatingActionButton(
-                    onPressed: () {Navigator.pushReplacementNamed(context, '/dashboard_page');},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        '/dashboard_page',
+                      );
+                    },
                     child: Text("Выбрать"),
                   );
                 }

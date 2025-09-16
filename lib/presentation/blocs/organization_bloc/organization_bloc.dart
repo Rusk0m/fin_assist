@@ -13,6 +13,7 @@ class OrganizationBloc extends Bloc<OrganizationEvent, OrganizationState> {
   OrganizationBloc() : super(OrganizationInitial()) {
     on<GetOrganizationsByOwnerEvent>(_onGetOrganizationsByOwner);
     on<GetOrganizationByIdEvent>(_onGetOrganizationById);
+    on<GetOrganizationsByListIdEvent>(_onGetOrganizationsByListId);
     on<AddOrganizationEvent>(_onAddOrganization);
     on<ResetOrganizationStateEvent>(_onResetOrganizationState);
   }
@@ -41,6 +42,32 @@ class OrganizationBloc extends Bloc<OrganizationEvent, OrganizationState> {
 
       if (organization != null) {
         emit(OrganizationLoadedState(organization));
+      } else {
+        emit(OrganizationNotFoundState());
+      }
+    } catch (e) {
+      print('OrganizationBloc: Error loading organization: $e');
+      emit(OrganizationErrorState(e.toString()));
+    }
+  }
+
+  Future<void> _onGetOrganizationsByListId(
+      GetOrganizationsByListIdEvent event,
+      Emitter<OrganizationState> emit,
+      ) async {
+    emit(OrganizationLoading());
+    try {
+      final List<Organization> organizations = List.empty(growable: true);
+
+      for (final id in event.organizationsId) {
+        final organization = await GetIt.instance<GetOrganizationByIdUseCase>().call(id);
+        if (organization != null) {
+          organizations.add(organization);
+        }
+      }
+
+      if (organizations.isNotEmpty) {
+        emit(OrganizationsLoadedState(organizations));
       } else {
         emit(OrganizationNotFoundState());
       }

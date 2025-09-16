@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:fin_assist/core/entities/user.dart';
+import 'package:fin_assist/domain/entity/user.dart';
 import 'package:fin_assist/generated/l10n.dart';
 import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:fin_assist/presentation/blocs/user_bloc/user_bloc.dart';
@@ -83,6 +83,7 @@ class LoginScreen extends StatelessWidget {
                             // name: authState.displayName ?? '',
                             role: 'owner',
                             organizations: [],
+                            branches: [],
                           );
 
                           userBloc.add(AddUser(newUser));

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fin_assist/core/entities/user.dart';
+import 'package:fin_assist/domain/entity/user.dart';
 import 'package:fin_assist/domain/repository/user_repository.dart';
 import 'package:fin_assist/domain/use_case/user_use_case/add_user_usecase.dart';
 import 'package:fin_assist/domain/use_case/user_use_case/update_user_usecase.dart';

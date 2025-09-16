@@ -1,4 +1,4 @@
-import 'package:fin_assist/core/entities/user.dart';
+import 'package:fin_assist/domain/entity/user.dart';
 import 'package:fin_assist/domain/repository/user_repository.dart';
 
 class GetUserByIdUseCase {

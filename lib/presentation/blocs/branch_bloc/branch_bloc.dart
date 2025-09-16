@@ -14,6 +14,7 @@ class BranchBloc extends Bloc<BranchEvent, BranchState> {
   BranchBloc() : super(BranchInitial()) {
     on<GetBranchesByOrganizationEvent>(_onGetBranchesByOrganization);
     on<GetBranchByIdEvent>(_onGetBranchById);
+    on<GetBranchesByListIdEvent>(_onGetBranchesByListId);
     on<AddBranchEvent>(_onAddBranch);
     on<ResetBranchStateEvent>(_onResetBranchState);
   }
@@ -46,6 +47,31 @@ class BranchBloc extends Bloc<BranchEvent, BranchState> {
       }
     } catch (e) {
       print('BranchBloc: Error loading branch: $e');
+      emit(BranchErrorState(e.toString()));
+    }
+  }
+
+  Future<void> _onGetBranchesByListId(
+      GetBranchesByListIdEvent event,
+      Emitter<BranchState> emit,
+      ) async {
+    emit(BranchLoading());
+    try {
+      final List<Branch> branches = List.empty(growable: true);
+
+      for (final id in event.branchesId) {
+        final branch = await GetIt.instance<GetBranchByIdUseCase>().call(id);
+        if (branch != null){
+          branches.add(branch);
+        }
+      }
+
+      if (branches.isNotEmpty) {
+        emit(BranchesLoadedState(branches));
+      } else {
+        emit(BranchNotFoundState());
+      }
+    } catch (e) {
       emit(BranchErrorState(e.toString()));
     }
   }

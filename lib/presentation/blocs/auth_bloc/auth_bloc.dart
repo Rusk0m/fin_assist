@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fin_assist/core/entities/user.dart';
+import 'package:fin_assist/domain/entity/user.dart';
 import 'package:fin_assist/domain/repository/auth_repository.dart';
 import 'package:fin_assist/di.dart';
 import 'package:fin_assist/domain/use_case/auth_use_case/check_auth_status_usecase.dart';

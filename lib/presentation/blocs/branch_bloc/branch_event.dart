@@ -25,6 +25,15 @@ class GetBranchByIdEvent extends BranchEvent {
   List<Object> get props => [branchId];
 }
 
+class GetBranchesByListIdEvent extends BranchEvent {
+  final List<String> branchesId;
+
+  const GetBranchesByListIdEvent(this.branchesId);
+
+  @override
+  List<Object> get props => [branchesId];
+}
+
 class AddBranchEvent extends BranchEvent {
   final Branch branch;
 

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fin_assist/core/entities/user.dart';
+import 'package:fin_assist/domain/entity/user.dart';
 import 'package:fin_assist/core/error/failures.dart';
 import 'package:fin_assist/domain/repository/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;

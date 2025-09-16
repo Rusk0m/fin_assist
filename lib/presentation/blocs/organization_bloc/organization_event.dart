@@ -26,6 +26,15 @@ class GetOrganizationByIdEvent extends OrganizationEvent {
   List<Object> get props => [organizationId];
 }
 
+class GetOrganizationsByListIdEvent extends OrganizationEvent {
+  final List<String> organizationsId;
+
+  const GetOrganizationsByListIdEvent(this.organizationsId);
+
+  @override
+  List<Object> get props => [organizationsId];
+}
+
 class AddOrganizationEvent extends OrganizationEvent {
   final Organization organization;
 

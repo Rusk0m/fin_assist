@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fin_assist/core/entities/user.dart';
+import 'package:fin_assist/domain/entity/user.dart';
 import 'package:fin_assist/data/model/branch_model/branch_model.dart';
 import 'package:fin_assist/data/model/organisation_model/organization_model.dart';
 import 'package:fin_assist/data/model/user_model/user_model.dart';
@@ -21,27 +21,33 @@ class UserRepositoryImpl implements UserRepository {
           .get();
 
       return snapshot.docs
-          .map((doc) => BranchModel.fromJson(doc.data()))
+          .map((doc) {
+        final data = doc.data();
+        // Добавляем branchId в данные
+        final jsonWithId = {...data, 'branchId': doc.id};
+        return BranchModel.fromJson(jsonWithId).toEntity();
+      })
           .toList();
     } catch (e) {
-      print('Error: $e');
-      return [];
+      print('Error getting user branches: $e');
+      throw Exception('Не удалось загрузить филиалы пользователя');
     }
   }
 
   @override
   Future<UserEntity> getUserById(String uid) async {
-    final doc = await firestore.collection('users').doc(uid).get();
-    if (!doc.exists) throw Exception('Профиль пользователя не найден');
+    try {
+      final doc = await firestore.collection('users').doc(uid).get();
+      if (!doc.exists) throw Exception('Профиль пользователя не найден');
 
-    final data = doc.data()!;
-    return UserEntity(
-      uid: data['uid'],
-      email: data['email'],
-      name: data['name'],
-      role: data['role'],
-      organizations: List<String>.from(data['organizations'] ?? []),
-    );
+      final data = doc.data()!;
+      // Добавляем uid в данные
+      final jsonWithId = {...data, 'uid': doc.id};
+      return UserModel.fromJson(jsonWithId).toEntity();
+    } catch (e) {
+      print('Error getting user by ID: $e');
+      throw Exception('Не удалось загрузить данные пользователя');
+    }
   }
 
   @override
@@ -53,25 +59,28 @@ class UserRepositoryImpl implements UserRepository {
           .get();
 
       return snapshot.docs
-          .map((doc) => OrganizationModel.fromJson(doc.data()).toEntity())
+          .map((doc) {
+        final data = doc.data();
+        // Добавляем organizationId в данные
+        final jsonWithId = {...data, 'organizationId': doc.id};
+        return OrganizationModel.fromJson(jsonWithId).toEntity();
+      })
           .toList();
     } catch (e) {
-      print('Error: $e');
-      return [];
+      print('Error getting user organizations: $e');
+      throw Exception('Не удалось загрузить организации пользователя');
     }
   }
 
   @override
   Future<void> updateUser(UserEntity user) async {
     try {
-      await firestore.collection('users').doc(user.uid).update({
-        'name': user.name,
-        'email': user.email,
-        'role': user.role,
-        'organizations': user.organizations,
-      });
+      // Преобразуем Entity в Model и затем в JSON
+      final userModel = UserModel.fromEntity(user);
+      await firestore.collection('users').doc(user.uid).update(userModel.toJson());
     } catch (e) {
-      throw Exception('Failed to update user: $e');
+      print('Error updating user: $e');
+      throw Exception('Не удалось обновить данные пользователя');
     }
   }
 
@@ -85,11 +94,43 @@ class UserRepositoryImpl implements UserRepository {
         throw Exception('Пользователь уже существует');
       }
 
-      // Создаем пользователя с переданными данными
-      await firestore.collection('users').doc(user.uid).set(user.toJson());
+      // Преобразуем Entity в Model и затем в JSON
+      final userModel = UserModel.fromEntity(user);
+      await firestore.collection('users').doc(user.uid).set(userModel.toJson());
     } catch (e) {
       print('Error adding user: $e');
       throw Exception('Не удалось создать пользователя: $e');
+    }
+  }
+
+  // Дополнительные методы
+  @override
+  Future<void> addUserToOrganization(String userId, String organizationId) async {
+    try {
+      final user = await getUserById(userId);
+      final updatedUser = user.copyWith(
+        organizations: List<String>.from(user.organizations)..add(organizationId),
+      );
+
+      await updateUser(updatedUser);
+    } catch (e) {
+      print('Error adding user to organization: $e');
+      throw Exception('Не удалось добавить пользователя в организацию');
+    }
+  }
+
+  @override
+  Future<void> removeUserFromOrganization(String userId, String organizationId) async {
+    try {
+      final user = await getUserById(userId);
+      final updatedUser = user.copyWith(
+        organizations: List<String>.from(user.organizations)..remove(organizationId),
+      );
+
+      await updateUser(updatedUser);
+    } catch (e) {
+      print('Error removing user from organization: $e');
+      throw Exception('Не удалось удалить пользователя из организации');
     }
   }
 }

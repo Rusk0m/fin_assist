@@ -1,6 +1,8 @@
+import 'package:fin_assist/di.dart';
 import 'package:fin_assist/domain/entity/branch.dart';
 import 'package:fin_assist/domain/entity/financial_report.dart';
 import 'package:fin_assist/domain/entity/organization.dart';
+import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:fin_assist/presentation/blocs/branch_bloc/branch_bloc.dart';
 import 'package:fin_assist/presentation/blocs/financial_report_bloc/financial_report_bloc.dart';
 import 'package:fin_assist/presentation/blocs/organization_bloc/organization_bloc.dart';
@@ -10,7 +12,6 @@ import 'package:fin_assist/presentation/pages/report_selection_page/widgets/sele
 import 'package:fin_assist/presentation/pages/report_selection_page/widgets/selection_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 
 class ReportSelectionPage extends StatefulWidget {
   const ReportSelectionPage({super.key});
@@ -20,7 +21,6 @@ class ReportSelectionPage extends StatefulWidget {
 }
 
 class _ReportSelectionPageState extends State<ReportSelectionPage> {
-  final getIt = GetIt.instance;
   late final OrganizationBloc organizationBloc = getIt<OrganizationBloc>();
   late final BranchBloc branchBloc = getIt<BranchBloc>();
   late final FinancialReportBloc reportBloc = getIt<FinancialReportBloc>();
@@ -44,7 +44,19 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Выбор отчёта")),
+      appBar: AppBar(
+        title: Text("Выбор отчёта"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              print('SettingsPage: Logout button pressed');
+              context.read<AuthBloc>().add(LogoutEvent());
+              Navigator.pushNamed(context, '/');
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
+      ),
       body: MultiBlocListener(
         listeners: [
           BlocListener<OrganizationBloc, OrganizationState>(

@@ -9,19 +9,39 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
-      listenWhen: (previous, current) =>
-      current is AuthAuthenticated || current is AuthUnauthenticated,
-      listener: (context, state) {
-        if (state is AuthUnauthenticated) {
-          Navigator.pushNamedAndRemoveUntil(context, AppRouter.logIn,(route)=>false);
-        } else if (state is AuthAuthenticated) {
-          print("User Id: ${state.uid}");
-          context.read<UserBloc>().add(LoadUser(state.uid));
-          Navigator.pushNamedAndRemoveUntil(context, AppRouter.dashboard,(route)=>false);
-        }
-      },
-      child: const Scaffold(),
+    return MultiBlocListener(
+      listeners: [
+        // Слушаем AuthBloc
+        BlocListener<AuthBloc, AuthState>(
+          listener: (context, state) {
+            if (state is AuthUnauthenticated) {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                AppRouter.logIn,
+                    (route) => false,
+              );
+            } else if (state is AuthAuthenticated) {
+              // Загружаем пользователя
+              context.read<UserBloc>().add(LoadUser(state.uid));
+            }
+          },
+        ),
+        // Слушаем UserBloc
+        BlocListener<UserBloc, UserState>(
+          listener: (context, state) {
+            if (state is UserLoaded) {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                '/report_selection_page',
+                    (route) => false,
+              );
+            }
+          },
+        ),
+      ],
+      child: const Scaffold(
+        body: Center(child: CircularProgressIndicator()), // индикатор пока грузим
+      ),
     );
   }
 }

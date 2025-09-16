@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fin_assist/core/utils/timas_temp_converter.dart';
 import 'package:fin_assist/data/model/financial_reports_model/balance/balance_model.dart';
 import 'package:fin_assist/data/model/financial_reports_model/cash_flow/cash_flow_model.dart';
 import 'package:fin_assist/data/model/financial_reports_model/income_statement/income_statement_model.dart';
@@ -15,6 +17,9 @@ class FinancialReportModel {
   final String type;
   final String status;
   final String submittedBy;
+  @TimestampConverter()
+  final DateTime createdAt;
+  @TimestampConverter()
   final DateTime submittedAt;
   final BalanceModel balance;
   final CashFlowModel cashFlow;
@@ -28,6 +33,7 @@ class FinancialReportModel {
     required this.type,
     required this.status,
     required this.submittedBy,
+    required this.createdAt,
     required this.submittedAt,
     required this.balance,
     required this.cashFlow,
@@ -48,6 +54,7 @@ class FinancialReportModel {
     type: type,
     status: status,
     submittedBy: submittedBy,
+    createdAt: createdAt,
     submittedAt: submittedAt,
     balance: balance.toEntity(),
     cashFlow: cashFlow.toEntity(),

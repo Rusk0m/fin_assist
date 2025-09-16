@@ -11,12 +11,14 @@ class FinancialReportEntity extends Equatable{
   final String status;        // submitted | draft | approved
   final String submittedBy;   // UID пользователя, кто загрузил
   final DateTime submittedAt; // Дата загрузки
+  final DateTime createdAt; // Дата загрузки
+
 
   final Balance balance;      // Баланс
   final CashFlow cashFlow;    // Денежные потоки
   final IncomeStatement incomeStatement; // Отчет о прибылях и убытках
 
-  const FinancialReportEntity({
+  const FinancialReportEntity( {
     required this.reportId,
     required this.branchId,
     required this.organizationId,
@@ -25,13 +27,14 @@ class FinancialReportEntity extends Equatable{
     required this.status,
     required this.submittedBy,
     required this.submittedAt,
+    required this.createdAt,
     required this.balance,
     required this.cashFlow,
     required this.incomeStatement,
   });
 
   @override
-  List<Object?> get props => [reportId,branchId,organizationId,period,type,status,submittedBy,submittedBy,balance,cashFlow,incomeStatement];
+  List<Object?> get props => [reportId,branchId,organizationId,period,type,status,submittedBy,submittedBy,balance,cashFlow,incomeStatement,createdAt];
 }
 
 class Balance {

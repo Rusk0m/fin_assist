@@ -15,9 +15,7 @@ class FinancialReportRepositoryImpl implements FinancialReportRepository {
   @override
   Future<void> submitReport(FinancialReportEntity report) async {
     final docRef = firestore
-        .collection('branches')
-        .doc(report.branchId)
-        .collection('reports')
+        .collection('financialReports')
         .doc(report.reportId);
 
     await docRef.set(
@@ -30,6 +28,7 @@ class FinancialReportRepositoryImpl implements FinancialReportRepository {
         status: report.status,
         submittedBy: report.submittedBy,
         submittedAt: report.submittedAt,
+        createdAt: report.createdAt,
         balance: BalanceModel.fromEntity(report.balance), // BalanceModel
         cashFlow: CashFlowModel.fromEntity(report.cashFlow), // CashFlowModel
         incomeStatement: IncomeStatementModel.fromEntity(report.incomeStatement), // IncomeStatementModel

@@ -23,8 +23,8 @@ class LoginScreen extends StatelessWidget {
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthAuthenticated){
-            userBloc.add(LoadUser(state.uid));
-            Navigator.pushReplacementNamed(context, '/report_selection_page');
+           // userBloc.add(LoadUser(state.uid));
+            Navigator.pushReplacementNamed(context, '/');
           } else if (state is AuthError) {
             ScaffoldMessenger.of(
               context,
@@ -43,11 +43,13 @@ class LoginScreen extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextField(
                     controller: emailController,
                     decoration:  InputDecoration(labelText: S.of(context).email),
                   ),
+                  SizedBox(height: 28,),
                   TextField(
                     controller: passwordController,
                     decoration:  InputDecoration(labelText: S.of(context).password),

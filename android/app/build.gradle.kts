@@ -26,7 +26,7 @@ android {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.fin_assist"
 
-        minSdk = flutter.minSdkVersion
+        minSdk = 23
         targetSdk = 34
         versionCode = flutter.versionCode
         versionName = flutter.versionName

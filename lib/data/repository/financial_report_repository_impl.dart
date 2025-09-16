@@ -40,9 +40,9 @@ class FinancialReportRepositoryImpl implements FinancialReportRepository {
   @override
   Future<List<FinancialReportEntity>> getReportsByBranch(String branchId,) async {
     final querySnapshot = await firestore
-        .collectionGroup('reports')
+        .collection('financialReports')
         .where('branchId', isEqualTo: branchId)
-        .orderBy('submittedAt', descending: true)
+        //.orderBy('submittedAt', descending: true)
         .get();
 
     return querySnapshot.docs

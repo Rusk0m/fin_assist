@@ -2,7 +2,7 @@ import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:fin_assist/presentation/blocs/dashboard_cubit/dashboard_cubit.dart';
 import 'package:fin_assist/presentation/pages/analytics_page.dart';
 import 'package:fin_assist/presentation/pages/home_page.dart';
-import 'package:fin_assist/presentation/pages/report_list_page.dart';
+import 'package:fin_assist/presentation/pages/report_list/report_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

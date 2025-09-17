@@ -28,7 +28,7 @@ class RosScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            S.of(context).profitabilityAnalysisPeriodMonths,
+            S.of(context).profitabilityAnalysisPeriodMonths(period),
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),

@@ -32,7 +32,7 @@ class LiquidityScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            S.of(context).liquidityAnalysisPeriodMonths,
+            S.of(context).liquidityAnalysisPeriodMonths(period),
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),

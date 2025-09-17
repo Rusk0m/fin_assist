@@ -30,7 +30,15 @@
   "switchLocales": "Изменить язык",
   "enterNewName": "Введите новое имя",
   "enterNewEmail": "Введите новый email",
-  "numPeriod": "Анализ задолженности ($period месяцев)",
+  "numPeriod": "Анализ задолженности ({period} месяцев)",
+  "@numPeriod": {
+    "placeholders": {
+      "period": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
   "debtToCapital": "Отношение долга к собственному капиталу",
   "structureOfLiabilities": "Структура обязательств",
   "shortTerm": "Краткосрочные",
@@ -72,10 +80,26 @@
   "financialStability": "🏦 Финансовая устойчивость",
   "normDebtCapital": "Норма: < 1.0",
   "financialAnalysis": "Финансовый анализ",
-  "periodMonth": "$period месяцев",
+  "periodMonth": "{period} месяцев",
+  "@periodMonth": {
+    "placeholders": {
+      "period": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
   "liquidity": "Ликвидность",
   "arrears": "Задолженность",
-  "liquidityAnalysisPeriodMonths": "Анализ ликвидности ($period месяцев)",
+  "liquidityAnalysisPeriodMonths": "Анализ ликвидности ({period} месяцев)",
+  "@liquidityAnalysisPeriodMonths": {
+    "placeholders": {
+      "period": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
   "liquidityRatios": "Коэффициенты ликвидности",
   "techLiquor": "Тек. ликв.",
   "currentLiquidityRatio": "Коэффициент текущей ликвидности",
@@ -84,7 +108,15 @@
   "detailedLiquidityStatistics": "Детальная статистика ликвидности",
   "cashResources": "Денежные средства",
   "techAssets": "Тек. активы",
-  "profitabilityAnalysisPeriodMonths": "Анализ рентабельности ($period месяцев)",
+  "profitabilityAnalysisPeriodMonths": "Анализ рентабельности ({period} месяцев)",
+  "@profitabilityAnalysisPeriodMonths": {
+    "placeholders": {
+      "period": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
   "returnOnAssetsAndCapital": "Рентабельность активов и капитала (%)",
   "profitMargin": "Маржа прибыли (%)",
   "GrossMargin": "Валовая маржа",

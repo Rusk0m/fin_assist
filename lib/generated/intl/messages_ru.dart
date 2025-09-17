@@ -20,6 +20,14 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
+  static String m0(period) => "Анализ ликвидности (${period} месяцев)";
+
+  static String m1(period) => "Анализ задолженности (${period} месяцев)";
+
+  static String m2(period) => "${period} месяцев";
+
+  static String m3(period) => "Анализ рентабельности (${period} месяцев)";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "GrossMargin": MessageLookupByLibrary.simpleMessage("Валовая маржа"),
@@ -108,9 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Последний отчетный период",
     ),
     "liquidity": MessageLookupByLibrary.simpleMessage("Ликвидность"),
-    "liquidityAnalysisPeriodMonths": MessageLookupByLibrary.simpleMessage(
-      "Анализ ликвидности (\$period месяцев)",
-    ),
+    "liquidityAnalysisPeriodMonths": m0,
     "liquidityIndicators": MessageLookupByLibrary.simpleMessage(
       "💧 Показатели ликвидности",
     ),
@@ -141,9 +147,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "normDebtCapital": MessageLookupByLibrary.simpleMessage("Норма: < 1.0"),
     "normFastLiquidity": MessageLookupByLibrary.simpleMessage("Норма: > 1.0"),
     "notifications": MessageLookupByLibrary.simpleMessage("Уведомления"),
-    "numPeriod": MessageLookupByLibrary.simpleMessage(
-      "Анализ задолженности (\$period месяцев)",
-    ),
+    "numPeriod": m1,
     "otherSettings": MessageLookupByLibrary.simpleMessage("Другие настройки"),
     "password": MessageLookupByLibrary.simpleMessage("Пароль"),
     "passwordResetEmailSent": MessageLookupByLibrary.simpleMessage(
@@ -151,14 +155,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "passwordUpdated": MessageLookupByLibrary.simpleMessage("Пароль обновлён"),
     "period": MessageLookupByLibrary.simpleMessage("Период"),
-    "periodMonth": MessageLookupByLibrary.simpleMessage("\$period месяцев"),
+    "periodMonth": m2,
     "profileDetails": MessageLookupByLibrary.simpleMessage("Данные профиля"),
     "profit": MessageLookupByLibrary.simpleMessage("Прибыль"),
     "profitMargin": MessageLookupByLibrary.simpleMessage("Маржа прибыли (%)"),
     "profitability": MessageLookupByLibrary.simpleMessage("📈 Рентабельность"),
-    "profitabilityAnalysisPeriodMonths": MessageLookupByLibrary.simpleMessage(
-      "Анализ рентабельности (\$period месяцев)",
-    ),
+    "profitabilityAnalysisPeriodMonths": m3,
     "quickLiquidityRatio": MessageLookupByLibrary.simpleMessage(
       "Коэффициент быстрой ликвидности",
     ),

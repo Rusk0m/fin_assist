@@ -30,7 +30,12 @@
   "switchLocales": "Change language",
   "enterNewName": "Enter new name",
   "enterNewEmail": "Enter new email",
-  "numPeriod": "Debt analysis ($period months)",
+  "numPeriod": "Debt analysis ({period} months)",
+  "@numPeriod": {
+    "placeholders": {
+      "period": {}
+    }
+  },
   "debtToCapital": "Debt to equity ratio",
   "structureOfLiabilities": "Liabilities structure",
   "shortTerm": "Short-term",
@@ -72,10 +77,26 @@
   "financialStability": "🏦 Financial stability",
   "normDebtCapital": "Norm: < 1.0",
   "financialAnalysis": "Financial analysis",
-  "periodMonth": "$period months",
+  "periodMonth": "{period} months",
+  "@periodMonth": {
+    "placeholders": {
+      "period": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
   "liquidity": "Liquidity",
   "arrears": "Debt",
-  "liquidityAnalysisPeriodMonths": "Liquidity analysis ($period months)",
+  "liquidityAnalysisPeriodMonths": "Liquidity analysis ({period} months)",
+  "@liquidityAnalysisPeriodMonths": {
+    "placeholders": {
+      "period": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
   "liquidityRatios": "Liquidity ratios",
   "techLiquor": "Curr. liq.",
   "currentLiquidityRatio": "Current ratio",
@@ -84,8 +105,15 @@
   "detailedLiquidityStatistics": "Detailed liquidity statistics",
   "cashResources": "Cash",
   "techAssets": "Current assets",
-  "profitabilityAnalysisPeriodMonths": "Profitability analysis ($period months)",
-  "returnOnAssetsAndCapital": "Return on assets and capital (%)",
+  "profitabilityAnalysisPeriodMonths": "Profitability analysis ({period} months)",
+  "@profitabilityAnalysisPeriodMonths": {
+    "placeholders": {
+      "period": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },  "returnOnAssetsAndCapital": "Return on assets and capital (%)",
   "profitMargin": "Profit margin (%)",
   "GrossMargin": "Gross margin",
   "netMargin": "Net margin",

@@ -319,13 +319,13 @@ class S {
     );
   }
 
-  /// `Debt analysis ($period months)`
-  String get numPeriod {
+  /// `Debt analysis ({period} months)`
+  String numPeriod(Object period) {
     return Intl.message(
-      'Debt analysis (\$period months)',
+      'Debt analysis ($period months)',
       name: 'numPeriod',
       desc: '',
-      args: [],
+      args: [period],
     );
   }
 
@@ -674,13 +674,13 @@ class S {
     );
   }
 
-  /// `$period months`
-  String get periodMonth {
+  /// `{period} months`
+  String periodMonth(int period) {
     return Intl.message(
-      '\$period months',
+      '$period months',
       name: 'periodMonth',
       desc: '',
-      args: [],
+      args: [period],
     );
   }
 
@@ -694,13 +694,13 @@ class S {
     return Intl.message('Debt', name: 'arrears', desc: '', args: []);
   }
 
-  /// `Liquidity analysis ($period months)`
-  String get liquidityAnalysisPeriodMonths {
+  /// `Liquidity analysis ({period} months)`
+  String liquidityAnalysisPeriodMonths(int period) {
     return Intl.message(
-      'Liquidity analysis (\$period months)',
+      'Liquidity analysis ($period months)',
       name: 'liquidityAnalysisPeriodMonths',
       desc: '',
-      args: [],
+      args: [period],
     );
   }
 
@@ -769,13 +769,13 @@ class S {
     );
   }
 
-  /// `Profitability analysis ($period months)`
-  String get profitabilityAnalysisPeriodMonths {
+  /// `Profitability analysis ({period} months)`
+  String profitabilityAnalysisPeriodMonths(int period) {
     return Intl.message(
-      'Profitability analysis (\$period months)',
+      'Profitability analysis ($period months)',
       name: 'profitabilityAnalysisPeriodMonths',
       desc: '',
-      args: [],
+      args: [period],
     );
   }
 

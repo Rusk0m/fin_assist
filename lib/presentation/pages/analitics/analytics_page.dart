@@ -62,7 +62,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> with SingleTickerProvider
             itemBuilder: (context) => _periodOptions.map((period) {
               return PopupMenuItem(
                 value: period,
-                child: Text(S.of(context).periodMonth),
+                child: Text(S.of(context).periodMonth(period)),
               );
             }).toList(),
             icon: const Icon(Icons.calendar_today),

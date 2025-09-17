@@ -66,13 +66,8 @@ class OrganizationBloc extends Bloc<OrganizationEvent, OrganizationState> {
         }
       }
 
-      if (organizations.isNotEmpty) {
-        emit(OrganizationsLoadedState(organizations));
-      } else {
-        emit(OrganizationNotFoundState());
-      }
+      emit(OrganizationsLoadedState(organizations));
     } catch (e) {
-      print('OrganizationBloc: Error loading organization: $e');
       emit(OrganizationErrorState(e.toString()));
     }
   }

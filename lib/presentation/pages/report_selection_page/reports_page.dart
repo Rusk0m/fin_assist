@@ -26,18 +26,15 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
   late final FinancialReportBloc reportBloc = getIt<FinancialReportBloc>();
   late final SelectionBloc selectionBloc = getIt<SelectionBloc>();
 
-  void _onTapOrganization(Organization organization) {
+  void _onSelectionOrganization(Organization organization) {
     selectionBloc.add(SelectOrganization(organization));
   }
 
-  void _onTapBranch(Branch branch) {
+  void _onSelectionBranch(Branch branch) {
     selectionBloc.add(SelectBranch(branch));
     reportBloc.add(GetReportsByBranchEvent(branch.branchId));
   }
 
-  // void _onTapReport(FinancialReportEntity report) {
-  //   selectionBloc.add(SelectReport(report));
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +110,7 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
                                         organizationState.organizations.length,
                                     itemBuilder: (context, index) =>
                                         SelectionCard(
-                                          onTap: () => _onTapOrganization(
+                                          onTap: () => _onSelectionOrganization(
                                             organizationState
                                                 .organizations[index],
                                           ),
@@ -210,11 +207,11 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
                                       SelectionCard(
                                         title: branches[index].name,
                                         onTap: () =>
-                                            _onTapBranch(branches[index]),
+                                            _onSelectionBranch(branches[index]),
                                       ),
                                 );
                               } else if (branches.isNotEmpty) {
-                                selectionBloc.add(SelectBranch(branches.first));
+                                _onSelectionBranch(branches.first);
                               }
                               return Center(
                                 child: Text("У вас нет ни одного филиала!!!"),
@@ -261,58 +258,6 @@ class _ReportSelectionPageState extends State<ReportSelectionPage> {
                 return const SizedBox(height: 0);
               },
             ),
-            // BlocBuilder<SelectionBloc, SelectionState>(
-            //   builder: (context, selectionState) {
-            //     if (selectionState.selectedBranch != null &&
-            //         selectionState.selectedReport == null) {
-            //       return BlocBuilder<FinancialReportBloc, FinancialReportState>(
-            //         builder: (context, reportState) {
-            //           if (reportState is FinancialReportsLoadedState) {
-            //             if (reportState.reports.length > 1) {
-            //               return ListView.builder(
-            //                 shrinkWrap: true,
-            //                 physics: const NeverScrollableScrollPhysics(),
-            //                 itemCount: reportState.reports.length,
-            //                 itemBuilder: (context, index) => SelectionCard(
-            //                   title: reportState.reports[index].reportId,
-            //                   onTap: () =>
-            //                       _onTapReport(reportState.reports[index]),
-            //                 ),
-            //               );
-            //             } else if (reportState.reports.isNotEmpty) {
-            //               selectionBloc.add(
-            //                 SelectReport(reportState.reports.first),
-            //               );
-            //             }
-            //             return Center(
-            //               child: Text("У вас нет ни одного отчёта!!!"),
-            //             );
-            //           } else if (reportState is FinancialReportInitial) {
-            //             reportBloc.add(
-            //               GetReportsByBranchEvent(
-            //                 selectionState.selectedBranch!.branchId,
-            //               ),
-            //             );
-            //             Navigator.pushReplacementNamed(
-            //               context,
-            //               '/dashboard_page',
-            //             );
-            //           }
-            //           return Center(child: CircularProgressIndicator());
-            //         },
-            //       );
-            //     } else if (selectionState.selectedReport != null) {
-            //       return SelectionTitle(
-            //         title: "Отчёт",
-            //         selection: selectionState.selectedReport!.reportId,
-            //         onTap: () {
-            //           selectionBloc.add(ClearReport());
-            //         },
-            //       );
-            //     }
-            //     return SizedBox(height: 0);
-            //   },
-            // ),
           ],
         ),
       ),

@@ -66,11 +66,7 @@ class BranchBloc extends Bloc<BranchEvent, BranchState> {
         }
       }
 
-      if (branches.isNotEmpty) {
-        emit(BranchesLoadedState(branches));
-      } else {
-        emit(BranchNotFoundState());
-      }
+      emit(BranchesLoadedState(branches));
     } catch (e) {
       emit(BranchErrorState(e.toString()));
     }

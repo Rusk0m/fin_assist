@@ -14,6 +14,9 @@ class SelectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Column(
       children: [
         Row(
@@ -21,7 +24,8 @@ class SelectionTitle extends StatelessWidget {
             Expanded(
               child: RichText(
                 text: TextSpan(
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20, color: colorScheme.onSurface,),
+
                   children: [
                     TextSpan(
                       text: "$title: ",

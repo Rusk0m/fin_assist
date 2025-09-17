@@ -1,6 +1,7 @@
 import 'package:fin_assist/domain/entity/economic_indicators.dart';
 import 'package:fin_assist/domain/entity/financial_report.dart';
 import 'package:fin_assist/domain/services/economic_indicators_service.dart';
+import 'package:fin_assist/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -35,39 +36,39 @@ class DutyScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Анализ задолженности ($period месяцев)',
+            S.of(context).numPeriod,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
 
           // График отношения долга к капиталу
-          _buildDebtToEquityChart(monthlyData),
+          _buildDebtToEquityChart(monthlyData,context),
           const SizedBox(height: 20),
 
           // График структуры долга
-          _buildDebtStructureChart(monthlyData),
+          _buildDebtStructureChart(monthlyData,context),
           const SizedBox(height: 20),
 
           // Ключевые показатели
-          _buildKeyMetrics(aggregatedIndicators, monthlyData),
+          _buildKeyMetrics(aggregatedIndicators, monthlyData,context),
           const SizedBox(height: 20),
 
           // Детальная таблица
-          _buildDetailedTable(monthlyData),
+          _buildDetailedTable(monthlyData,context),
         ],
       ),
     );
   }
 
-  Widget _buildDebtToEquityChart(List<_DutyChartData> monthlyData) {
+  Widget _buildDebtToEquityChart(List<_DutyChartData> monthlyData,BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Отношение долга к собственному капиталу',
+             Text(
+              S.of(context).debtToCapital,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -78,14 +79,14 @@ class DutyScreen extends StatelessWidget {
                   labelRotation: -45,
                 ),
                 primaryYAxis: NumericAxis(
-                  title: AxisTitle(text: 'Коэффициент'),
+                  title: AxisTitle(text: S.of(context).coefficient),
                 ),
                 series: <CartesianSeries>[
                   LineSeries<_DutyChartData, String>(
                     dataSource: monthlyData.reversed.toList(),
                     xValueMapper: (_DutyChartData data, _) => data.period,
                     yValueMapper: (_DutyChartData data, _) => data.debtToEquity,
-                    name: 'Долг/Капитал',
+                    name: S.of(context).debtCapital,
                     markerSettings: const MarkerSettings(isVisible: true),
                   ),
                 ],
@@ -93,22 +94,22 @@ class DutyScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            _buildDebtInterpretation(monthlyData.last.debtToEquity),
+            _buildDebtInterpretation(monthlyData.last.debtToEquity,context),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildDebtStructureChart(List<_DutyChartData> monthlyData) {
+  Widget _buildDebtStructureChart(List<_DutyChartData> monthlyData, BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Структура обязательств',
+            Text(
+              S.of(context).structureOfLiabilities,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -123,14 +124,14 @@ class DutyScreen extends StatelessWidget {
                     dataSource: monthlyData.reversed.toList(),
                     xValueMapper: (_DutyChartData data, _) => data.period,
                     yValueMapper: (_DutyChartData data, _) => data.shortTermDebt,
-                    name: 'Краткосрочные',
+                    name: S.of(context).shortTerm,
                     color: Colors.orange,
                   ),
                   ColumnSeries<_DutyChartData, String>(
                     dataSource: monthlyData.reversed.toList(),
                     xValueMapper: (_DutyChartData data, _) => data.period,
                     yValueMapper: (_DutyChartData data, _) => data.longTermDebt,
-                    name: 'Долгосрочные',
+                    name: S.of(context).longTerm,
                     color: Colors.blue,
                   ),
                 ],
@@ -144,7 +145,7 @@ class DutyScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildKeyMetrics(EconomicIndicators indicators, List<_DutyChartData> monthlyData) {
+  Widget _buildKeyMetrics(EconomicIndicators indicators, List<_DutyChartData> monthlyData,BuildContext context) {
     final currentData = monthlyData.isNotEmpty ? monthlyData.last : _DutyChartData.empty();
     final totalDebt = currentData.shortTermDebt + currentData.longTermDebt;
 
@@ -152,28 +153,28 @@ class DutyScreen extends StatelessWidget {
       children: [
         Expanded(
           child: _buildMetricCard(
-            'Долг/Кап.',
+            S.of(context).debitCapital,
             indicators.debtToEquity.toStringAsFixed(2),
             _getDebtToEquityColor(indicators.debtToEquity),
-            'Отношение долга к капиталу',
+            S.of(context).debtToEquityRatio,
           ),
         ),
         const SizedBox(width: 12),
         Expanded(
           child: _buildMetricCard(
-            'Общий долг',
+            S.of(context).totalDebt,
             '${totalDebt.toStringAsFixed(0)}',
             Colors.grey,
-            'Всего обязательств',
+            S.of(context).totalLiabilities,
           ),
         ),
         const SizedBox(width: 12),
         Expanded(
           child: _buildMetricCard(
-            'Долг/Активы',
+            S.of(context).debtAssets,
             currentData.debtRatio.toStringAsFixed(2),
             _getDebtRatioColor(currentData.debtRatio),
-            'Доля долга в активах',
+            S.of(context).debtToAssetsRatio,
           ),
         ),
       ],
@@ -211,21 +212,21 @@ class DutyScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDebtInterpretation(double debtToEquity) {
+  Widget _buildDebtInterpretation(double debtToEquity,BuildContext context) {
     String interpretation;
     Color color;
 
     if (debtToEquity < 0.5) {
-      interpretation = 'Низкая долговая нагрузка ✓';
+      interpretation = S.of(context).lowDebtBurden;
       color = Colors.green;
     } else if (debtToEquity < 1.0) {
-      interpretation = 'Умеренная долговая нагрузка';
+      interpretation = S.of(context).moderateDebtBurden;
       color = Colors.orange;
     } else if (debtToEquity < 2.0) {
-      interpretation = 'Высокая долговая нагрузка ⚠️';
+      interpretation = S.of(context).highDebtBurden;
       color = Colors.orange;
     } else {
-      interpretation = 'Очень высокая долговая нагрузка ❗';
+      interpretation = S.of(context).veryHighDebtBurden;
       color = Colors.red;
     }
 
@@ -247,29 +248,29 @@ class DutyScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDetailedTable(List<_DutyChartData> monthlyData) {
+  Widget _buildDetailedTable(List<_DutyChartData> monthlyData,BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Детальная статистика задолженности',
+            Text(
+              S.of(context).detailedDebtStatistics,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
-                columns: const [
-                  DataColumn(label: Text('Период')),
-                  DataColumn(label: Text('Долг/Кап.')),
-                  DataColumn(label: Text('Кратк. обяз.')),
-                  DataColumn(label: Text('Долг. обяз.')),
-                  DataColumn(label: Text('Всего долг')),
-                  DataColumn(label: Text('Капитал')),
-                  DataColumn(label: Text('Долг/Активы')),
+                columns: [
+                  DataColumn(label: Text(S.of(context).period)),
+                  DataColumn(label: Text(S.of(context).debtCap)),
+                  DataColumn(label: Text(S.of(context).brieflyMust)),
+                  DataColumn(label: Text(S.of(context).debtMust)),
+                  DataColumn(label: Text(S.of(context).totalDebt)),
+                  DataColumn(label: Text(S.of(context).capital)),
+                  DataColumn(label: Text(S.of(context).debtAssets)),
                 ],
                 rows: monthlyData.reversed.map((data) {
                   return DataRow(cells: [

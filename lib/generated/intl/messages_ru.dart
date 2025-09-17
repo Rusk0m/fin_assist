@@ -25,10 +25,30 @@ class MessageLookup extends MessageLookupByLibrary {
     "Name": MessageLookupByLibrary.simpleMessage("Имя"),
     "Registration": MessageLookupByLibrary.simpleMessage("Регистрация"),
     "aboutApplication": MessageLookupByLibrary.simpleMessage("О приложении"),
+    "brieflyMust": MessageLookupByLibrary.simpleMessage("Кратк. обяз."),
+    "capital": MessageLookupByLibrary.simpleMessage("Капитал"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
+    "coefficient": MessageLookupByLibrary.simpleMessage("Коэффициент"),
     "darkMode": MessageLookupByLibrary.simpleMessage("Тёмная тема"),
     "deactivateMyAccount": MessageLookupByLibrary.simpleMessage(
       "Деактивировать мой аккаунт",
+    ),
+    "debitCapital": MessageLookupByLibrary.simpleMessage("Долг/Кап."),
+    "debtAssets": MessageLookupByLibrary.simpleMessage("Долг/Активы"),
+    "debtCap": MessageLookupByLibrary.simpleMessage("Долг/Кап."),
+    "debtCapital": MessageLookupByLibrary.simpleMessage("Долг/Капитал"),
+    "debtMust": MessageLookupByLibrary.simpleMessage("Долг. обяз."),
+    "debtToAssetsRatio": MessageLookupByLibrary.simpleMessage(
+      "Доля долга в активах",
+    ),
+    "debtToCapital": MessageLookupByLibrary.simpleMessage(
+      "Отношение долга к собственному капиталу",
+    ),
+    "debtToEquityRatio": MessageLookupByLibrary.simpleMessage(
+      "Отношение долга к капиталу",
+    ),
+    "detailedDebtStatistics": MessageLookupByLibrary.simpleMessage(
+      "Детальная статистика задолженности",
     ),
     "editProfile": MessageLookupByLibrary.simpleMessage(
       "Редактировать профиль",
@@ -46,24 +66,49 @@ class MessageLookup extends MessageLookupByLibrary {
       "Уже есть аккаунт? Войти.",
     ),
     "helpfaq": MessageLookupByLibrary.simpleMessage("Помощь/FAQ"),
+    "highDebtBurden": MessageLookupByLibrary.simpleMessage(
+      "Высокая долговая нагрузка ⚠️",
+    ),
     "invalidPassword": MessageLookupByLibrary.simpleMessage("Неверный пароль"),
     "login": MessageLookupByLibrary.simpleMessage("Войти"),
+    "longTerm": MessageLookupByLibrary.simpleMessage("Долгосрочные"),
+    "lowDebtBurden": MessageLookupByLibrary.simpleMessage(
+      "Низкая долговая нагрузка ✓",
+    ),
+    "moderateDebtBurden": MessageLookupByLibrary.simpleMessage(
+      "Умеренная долговая нагрузка",
+    ),
     "name": MessageLookupByLibrary.simpleMessage("Имя"),
     "noAccountRegister": MessageLookupByLibrary.simpleMessage(
       "Нет аккаунта? Зарегистрируйтесь.",
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("Уведомления"),
+    "numPeriod": MessageLookupByLibrary.simpleMessage(
+      "Анализ задолженности (\$period месяцев)",
+    ),
     "otherSettings": MessageLookupByLibrary.simpleMessage("Другие настройки"),
     "password": MessageLookupByLibrary.simpleMessage("Пароль"),
     "passwordResetEmailSent": MessageLookupByLibrary.simpleMessage(
       "Письмо для сброса пароля отправлено",
     ),
     "passwordUpdated": MessageLookupByLibrary.simpleMessage("Пароль обновлён"),
+    "period": MessageLookupByLibrary.simpleMessage("Период"),
     "profileDetails": MessageLookupByLibrary.simpleMessage("Данные профиля"),
     "register": MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
     "registration": MessageLookupByLibrary.simpleMessage("Регистрация"),
     "settingsTitleAppBar": MessageLookupByLibrary.simpleMessage("Настройки"),
+    "shortTerm": MessageLookupByLibrary.simpleMessage("Краткосрочные"),
     "signIn": MessageLookupByLibrary.simpleMessage("Вход"),
+    "structureOfLiabilities": MessageLookupByLibrary.simpleMessage(
+      "Структура обязательств",
+    ),
     "switchLocales": MessageLookupByLibrary.simpleMessage("Switch locales"),
+    "totalDebt": MessageLookupByLibrary.simpleMessage("Общий долг"),
+    "totalLiabilities": MessageLookupByLibrary.simpleMessage(
+      "Всего обязательств",
+    ),
+    "veryHighDebtBurden": MessageLookupByLibrary.simpleMessage(
+      "Очень высокая долговая нагрузка ❗",
+    ),
   };
 }

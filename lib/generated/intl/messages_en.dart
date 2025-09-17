@@ -27,10 +27,30 @@ class MessageLookup extends MessageLookupByLibrary {
     "aboutApplication": MessageLookupByLibrary.simpleMessage(
       "About application",
     ),
+    "brieflyMust": MessageLookupByLibrary.simpleMessage("Кратк. обяз."),
+    "capital": MessageLookupByLibrary.simpleMessage("Капитал"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
+    "coefficient": MessageLookupByLibrary.simpleMessage("Коэффициент"),
     "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
     "deactivateMyAccount": MessageLookupByLibrary.simpleMessage(
       "Deactivate my account",
+    ),
+    "debitCapital": MessageLookupByLibrary.simpleMessage("Долг/Кап."),
+    "debtAssets": MessageLookupByLibrary.simpleMessage("Долг/Активы"),
+    "debtCap": MessageLookupByLibrary.simpleMessage("Долг/Кап."),
+    "debtCapital": MessageLookupByLibrary.simpleMessage("Долг/Капитал"),
+    "debtMust": MessageLookupByLibrary.simpleMessage("Долг. обяз."),
+    "debtToAssetsRatio": MessageLookupByLibrary.simpleMessage(
+      "Доля долга в активах",
+    ),
+    "debtToCapital": MessageLookupByLibrary.simpleMessage(
+      "Отношение долга к собственному капиталу",
+    ),
+    "debtToEquityRatio": MessageLookupByLibrary.simpleMessage(
+      "Отношение долга к капиталу",
+    ),
+    "detailedDebtStatistics": MessageLookupByLibrary.simpleMessage(
+      "Детальная статистика задолженности",
     ),
     "editProfile": MessageLookupByLibrary.simpleMessage("Edit profile"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -47,13 +67,26 @@ class MessageLookup extends MessageLookupByLibrary {
       "Already have an account? Login.",
     ),
     "helpfaq": MessageLookupByLibrary.simpleMessage("Help/FAQ"),
+    "highDebtBurden": MessageLookupByLibrary.simpleMessage(
+      "Высокая долговая нагрузка ⚠️",
+    ),
     "invalidPassword": MessageLookupByLibrary.simpleMessage("Invalid password"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "longTerm": MessageLookupByLibrary.simpleMessage("Долгосрочные"),
+    "lowDebtBurden": MessageLookupByLibrary.simpleMessage(
+      "Низкая долговая нагрузка ✓",
+    ),
+    "moderateDebtBurden": MessageLookupByLibrary.simpleMessage(
+      "Умеренная долговая нагрузка",
+    ),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "noAccountRegister": MessageLookupByLibrary.simpleMessage(
       "No account? Register.",
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+    "numPeriod": MessageLookupByLibrary.simpleMessage(
+      "Анализ задолженности (\$period месяцев)",
+    ),
     "organization": MessageLookupByLibrary.simpleMessage("Organization"),
     "otherSettings": MessageLookupByLibrary.simpleMessage("Other settings"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -61,14 +94,26 @@ class MessageLookup extends MessageLookupByLibrary {
       "Password reset email sent",
     ),
     "passwordUpdated": MessageLookupByLibrary.simpleMessage("Password updated"),
+    "period": MessageLookupByLibrary.simpleMessage("Период"),
     "profileDetails": MessageLookupByLibrary.simpleMessage("Profile details"),
     "register": MessageLookupByLibrary.simpleMessage("Register"),
     "registration": MessageLookupByLibrary.simpleMessage("Registration"),
     "settingsTitleAppBar": MessageLookupByLibrary.simpleMessage("Settings"),
+    "shortTerm": MessageLookupByLibrary.simpleMessage("Краткосрочные"),
     "signIn": MessageLookupByLibrary.simpleMessage("SignIn"),
     "signInWithGoogle": MessageLookupByLibrary.simpleMessage(
       "Sign in with Google",
     ),
+    "structureOfLiabilities": MessageLookupByLibrary.simpleMessage(
+      "Структура обязательств",
+    ),
     "switchLocales": MessageLookupByLibrary.simpleMessage("Switch locales"),
+    "totalDebt": MessageLookupByLibrary.simpleMessage("Общий долг"),
+    "totalLiabilities": MessageLookupByLibrary.simpleMessage(
+      "Всего обязательств",
+    ),
+    "veryHighDebtBurden": MessageLookupByLibrary.simpleMessage(
+      "Очень высокая долговая нагрузка ❗",
+    ),
   };
 }

@@ -22,98 +22,163 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "GrossMargin": MessageLookupByLibrary.simpleMessage("Gross margin"),
     "Name": MessageLookupByLibrary.simpleMessage("Name"),
     "Registration": MessageLookupByLibrary.simpleMessage("Registration"),
     "aboutApplication": MessageLookupByLibrary.simpleMessage(
       "About application",
     ),
-    "brieflyMust": MessageLookupByLibrary.simpleMessage("Кратк. обяз."),
-    "capital": MessageLookupByLibrary.simpleMessage("Капитал"),
-    "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
-    "coefficient": MessageLookupByLibrary.simpleMessage("Коэффициент"),
-    "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
+    "arrears": MessageLookupByLibrary.simpleMessage("Debt"),
+    "brieflyMust": MessageLookupByLibrary.simpleMessage("Short-term oblig."),
+    "capital": MessageLookupByLibrary.simpleMessage("Capital"),
+    "cashFlow": MessageLookupByLibrary.simpleMessage("Cash flow"),
+    "cashResources": MessageLookupByLibrary.simpleMessage("Cash"),
+    "changePassword": MessageLookupByLibrary.simpleMessage("Change password"),
+    "coefficient": MessageLookupByLibrary.simpleMessage("Coefficient"),
+    "costPrice": MessageLookupByLibrary.simpleMessage("Cost of goods sold"),
+    "currentLiquidity": MessageLookupByLibrary.simpleMessage(
+      "Current liquidity",
+    ),
+    "currentLiquidityRatio": MessageLookupByLibrary.simpleMessage(
+      "Current ratio",
+    ),
+    "darkMode": MessageLookupByLibrary.simpleMessage("Dark theme"),
     "deactivateMyAccount": MessageLookupByLibrary.simpleMessage(
       "Deactivate my account",
     ),
-    "debitCapital": MessageLookupByLibrary.simpleMessage("Долг/Кап."),
-    "debtAssets": MessageLookupByLibrary.simpleMessage("Долг/Активы"),
-    "debtCap": MessageLookupByLibrary.simpleMessage("Долг/Кап."),
-    "debtCapital": MessageLookupByLibrary.simpleMessage("Долг/Капитал"),
-    "debtMust": MessageLookupByLibrary.simpleMessage("Долг. обяз."),
+    "debitCapital": MessageLookupByLibrary.simpleMessage("Debt/Cap."),
+    "debtAssets": MessageLookupByLibrary.simpleMessage("Debt/Assets"),
+    "debtCap": MessageLookupByLibrary.simpleMessage("Debt/Cap."),
+    "debtCapital": MessageLookupByLibrary.simpleMessage("Debt/Capital"),
+    "debtMust": MessageLookupByLibrary.simpleMessage("Long-term oblig."),
     "debtToAssetsRatio": MessageLookupByLibrary.simpleMessage(
-      "Доля долга в активах",
+      "Debt to assets ratio",
     ),
     "debtToCapital": MessageLookupByLibrary.simpleMessage(
-      "Отношение долга к собственному капиталу",
+      "Debt to equity ratio",
     ),
     "debtToEquityRatio": MessageLookupByLibrary.simpleMessage(
-      "Отношение долга к капиталу",
+      "Debt to equity ratio",
     ),
     "detailedDebtStatistics": MessageLookupByLibrary.simpleMessage(
-      "Детальная статистика задолженности",
+      "Detailed debt statistics",
+    ),
+    "detailedLiquidityStatistics": MessageLookupByLibrary.simpleMessage(
+      "Detailed liquidity statistics",
+    ),
+    "detailedStatistics": MessageLookupByLibrary.simpleMessage(
+      "Detailed statistics",
     ),
     "editProfile": MessageLookupByLibrary.simpleMessage("Edit profile"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "enterNewEmail": MessageLookupByLibrary.simpleMessage("Enter new email"),
     "enterNewName": MessageLookupByLibrary.simpleMessage("Enter new name"),
     "errorUpdatingPassword": MessageLookupByLibrary.simpleMessage(
-      "Error Updating Password",
+      "Error updating password",
     ),
+    "fastLiquidity": MessageLookupByLibrary.simpleMessage("Quick liquidity"),
+    "fastLiquor": MessageLookupByLibrary.simpleMessage("Quick liq."),
     "fillInAllFields": MessageLookupByLibrary.simpleMessage(
       "Fill in all fields",
     ),
-    "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+    "financialAnalysis": MessageLookupByLibrary.simpleMessage(
+      "Financial analysis",
+    ),
+    "financialStability": MessageLookupByLibrary.simpleMessage(
+      "🏦 Financial stability",
+    ),
+    "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot password?"),
+    "grossMargin": MessageLookupByLibrary.simpleMessage("Gross margin (%)"),
     "haveAnAccount": MessageLookupByLibrary.simpleMessage(
-      "Already have an account? Login.",
+      "Already have an account? Sign in.",
     ),
     "helpfaq": MessageLookupByLibrary.simpleMessage("Help/FAQ"),
     "highDebtBurden": MessageLookupByLibrary.simpleMessage(
-      "Высокая долговая нагрузка ⚠️",
+      "High debt burden ⚠️",
     ),
     "invalidPassword": MessageLookupByLibrary.simpleMessage("Invalid password"),
-    "login": MessageLookupByLibrary.simpleMessage("Login"),
-    "longTerm": MessageLookupByLibrary.simpleMessage("Долгосрочные"),
-    "lowDebtBurden": MessageLookupByLibrary.simpleMessage(
-      "Низкая долговая нагрузка ✓",
+    "keyFinancialIndicators": MessageLookupByLibrary.simpleMessage(
+      "📊 Key financial indicators",
     ),
+    "lastReportingPeriod": MessageLookupByLibrary.simpleMessage(
+      "Last reporting period",
+    ),
+    "liquidity": MessageLookupByLibrary.simpleMessage("Liquidity"),
+    "liquidityAnalysisPeriodMonths": MessageLookupByLibrary.simpleMessage(
+      "Liquidity analysis (\$period months)",
+    ),
+    "liquidityIndicators": MessageLookupByLibrary.simpleMessage(
+      "💧 Liquidity indicators",
+    ),
+    "liquidityRatios": MessageLookupByLibrary.simpleMessage("Liquidity ratios"),
+    "login": MessageLookupByLibrary.simpleMessage("Log In"),
+    "longTerm": MessageLookupByLibrary.simpleMessage("Long-term"),
+    "lowDebtBurden": MessageLookupByLibrary.simpleMessage("Low debt burden ✓"),
+    "margin": MessageLookupByLibrary.simpleMessage("Margin"),
     "moderateDebtBurden": MessageLookupByLibrary.simpleMessage(
-      "Умеренная долговая нагрузка",
+      "Moderate debt burden",
     ),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
+    "netMargin": MessageLookupByLibrary.simpleMessage("Net margin"),
+    "netProfit": MessageLookupByLibrary.simpleMessage("Net profit"),
     "noAccountRegister": MessageLookupByLibrary.simpleMessage(
       "No account? Register.",
     ),
+    "noReports": MessageLookupByLibrary.simpleMessage(
+      "No reports for the previous period",
+    ),
+    "normCurrentLiquidity": MessageLookupByLibrary.simpleMessage("Norm: > 2.0"),
+    "normDebtCapital": MessageLookupByLibrary.simpleMessage("Norm: < 1.0"),
+    "normFastLiquidity": MessageLookupByLibrary.simpleMessage("Norm: > 1.0"),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
     "numPeriod": MessageLookupByLibrary.simpleMessage(
-      "Анализ задолженности (\$period месяцев)",
+      "Debt analysis (\$period months)",
     ),
-    "organization": MessageLookupByLibrary.simpleMessage("Organization"),
     "otherSettings": MessageLookupByLibrary.simpleMessage("Other settings"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordResetEmailSent": MessageLookupByLibrary.simpleMessage(
       "Password reset email sent",
     ),
     "passwordUpdated": MessageLookupByLibrary.simpleMessage("Password updated"),
-    "period": MessageLookupByLibrary.simpleMessage("Период"),
+    "period": MessageLookupByLibrary.simpleMessage("Period"),
+    "periodMonth": MessageLookupByLibrary.simpleMessage("\$period months"),
     "profileDetails": MessageLookupByLibrary.simpleMessage("Profile details"),
+    "profit": MessageLookupByLibrary.simpleMessage("Profit"),
+    "profitMargin": MessageLookupByLibrary.simpleMessage("Profit margin (%)"),
+    "profitability": MessageLookupByLibrary.simpleMessage("📈 Profitability"),
+    "profitabilityAnalysisPeriodMonths": MessageLookupByLibrary.simpleMessage(
+      "Profitability analysis (\$period months)",
+    ),
+    "quickLiquidityRatio": MessageLookupByLibrary.simpleMessage("Quick ratio"),
     "register": MessageLookupByLibrary.simpleMessage("Register"),
     "registration": MessageLookupByLibrary.simpleMessage("Registration"),
+    "returnOnAssets": MessageLookupByLibrary.simpleMessage("Return on assets"),
+    "returnOnAssetsAndCapital": MessageLookupByLibrary.simpleMessage(
+      "Return on assets and capital (%)",
+    ),
+    "returnOnCapital": MessageLookupByLibrary.simpleMessage(
+      "Return on capital",
+    ),
+    "revenue": MessageLookupByLibrary.simpleMessage("Revenue"),
     "settingsTitleAppBar": MessageLookupByLibrary.simpleMessage("Settings"),
-    "shortTerm": MessageLookupByLibrary.simpleMessage("Краткосрочные"),
-    "signIn": MessageLookupByLibrary.simpleMessage("SignIn"),
+    "shortTerm": MessageLookupByLibrary.simpleMessage("Short-term"),
+    "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
     "signInWithGoogle": MessageLookupByLibrary.simpleMessage(
-      "Sign in with Google",
+      "Sign in with Google?",
     ),
     "structureOfLiabilities": MessageLookupByLibrary.simpleMessage(
-      "Структура обязательств",
+      "Liabilities structure",
     ),
-    "switchLocales": MessageLookupByLibrary.simpleMessage("Switch locales"),
-    "totalDebt": MessageLookupByLibrary.simpleMessage("Общий долг"),
+    "switchLocales": MessageLookupByLibrary.simpleMessage("Change language"),
+    "techAssets": MessageLookupByLibrary.simpleMessage("Current assets"),
+    "techLiquor": MessageLookupByLibrary.simpleMessage("Curr. liq."),
+    "totalDebt": MessageLookupByLibrary.simpleMessage("Total debt"),
     "totalLiabilities": MessageLookupByLibrary.simpleMessage(
-      "Всего обязательств",
+      "Total liabilities",
     ),
     "veryHighDebtBurden": MessageLookupByLibrary.simpleMessage(
-      "Очень высокая долговая нагрузка ❗",
+      "Very high debt burden ❗",
     ),
+    "welcome": MessageLookupByLibrary.simpleMessage("Welcome,"),
   };
 }

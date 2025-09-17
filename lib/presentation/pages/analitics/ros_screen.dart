@@ -1,6 +1,7 @@
 import 'package:fin_assist/domain/entity/economic_indicators.dart';
 import 'package:fin_assist/domain/entity/financial_report.dart';
 import 'package:fin_assist/domain/services/economic_indicators_service.dart';
+import 'package:fin_assist/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -27,39 +28,39 @@ class RosScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Анализ рентабельности ($period месяцев)',
+            S.of(context).profitabilityAnalysisPeriodMonths,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
 
           // График ROA и ROE
-          _buildROChart(monthlyIndicators),
+          _buildROChart(monthlyIndicators,context),
           const SizedBox(height: 20),
 
           // График маржи
-          _buildMarginChart(monthlyIndicators),
+          _buildMarginChart(monthlyIndicators,context),
           const SizedBox(height: 20),
 
           // Ключевые показатели
-          _buildKeyMetrics(indicatorsService.calculateAggregatedIndicators(reports)),
+          _buildKeyMetrics(indicatorsService.calculateAggregatedIndicators(reports),context),
           const SizedBox(height: 20),
 
           // Детальная таблица
-          _buildDetailedTable(monthlyIndicators),
+          _buildDetailedTable(monthlyIndicators,context),
         ],
       ),
     );
   }
 
-  Widget _buildROChart(List<Map<String, dynamic>> monthlyIndicators) {
+  Widget _buildROChart(List<Map<String, dynamic>> monthlyIndicators,BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Рентабельность активов и капитала (%)',
+            Text(
+              S.of(context).returnOnAssetsAndCapital,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -94,15 +95,15 @@ class RosScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMarginChart(List<Map<String, dynamic>> monthlyIndicators) {
+  Widget _buildMarginChart(List<Map<String, dynamic>> monthlyIndicators,BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Маржа прибыли (%)',
+            Text(
+              S.of(context).profitMargin,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -117,14 +118,14 @@ class RosScreen extends StatelessWidget {
                     dataSource: monthlyIndicators.reversed.toList(),
                     xValueMapper: (data, _) => data['period'],
                     yValueMapper: (data, _) => data['indicators'].grossProfitMargin * 100,
-                    name: 'Валовая маржа',
+                    name: S.of(context).GrossMargin,
                     markerSettings: const MarkerSettings(isVisible: true),
                   ),
                   LineSeries<Map<String, dynamic>, String>(
                     dataSource: monthlyIndicators.reversed.toList(),
                     xValueMapper: (data, _) => data['period'],
                     yValueMapper: (data, _) => data['indicators'].netProfitMargin * 100,
-                    name: 'Чистая маржа',
+                    name: S.of(context).netMargin,
                     markerSettings: const MarkerSettings(isVisible: true),
                   ),
                 ],
@@ -137,7 +138,7 @@ class RosScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildKeyMetrics(EconomicIndicators indicators) {
+  Widget _buildKeyMetrics(EconomicIndicators indicators,BuildContext context) {
     return Row(
       children: [
         Expanded(
@@ -145,7 +146,7 @@ class RosScreen extends StatelessWidget {
             'ROA',
             '${(indicators.returnOnAssets * 100).toStringAsFixed(1)}%',
             Colors.blue,
-            'Рентабельность активов',
+            S.of(context).returnOnAssets,
           ),
         ),
         const SizedBox(width: 12),
@@ -154,16 +155,16 @@ class RosScreen extends StatelessWidget {
             'ROE',
             '${(indicators.returnOnEquity * 100).toStringAsFixed(1)}%',
             Colors.green,
-            'Рентабельность капитала',
+            S.of(context).returnOnCapital,
           ),
         ),
         const SizedBox(width: 12),
         Expanded(
           child: _buildMetricCard(
-            'Маржа',
+            S.of(context).margin,
             '${(indicators.netProfitMargin * 100).toStringAsFixed(1)}%',
             Colors.purple,
-            'Чистая маржа',
+            S.of(context).netMargin,
           ),
         ),
       ],
@@ -201,29 +202,29 @@ class RosScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDetailedTable(List<Map<String, dynamic>> monthlyIndicators) {
+  Widget _buildDetailedTable(List<Map<String, dynamic>> monthlyIndicators, BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Детальная статистика',
+            Text(
+              S.of(context).detailedStatistics,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
-                columns: const [
-                  DataColumn(label: Text('Период')),
+                columns: [
+                  DataColumn(label: Text(S.of(context).period)),
                   DataColumn(label: Text('ROA (%)')),
                   DataColumn(label: Text('ROE (%)')),
-                  DataColumn(label: Text('Вал. маржа (%)')),
-                  DataColumn(label: Text('Чист. маржа (%)')),
-                  DataColumn(label: Text('Выручка')),
-                  DataColumn(label: Text('Прибыль')),
+                  DataColumn(label: Text(S.of(context).grossMargin)),
+                  DataColumn(label: Text(S.of(context).netMargin)),
+                  DataColumn(label: Text(S.of(context).revenue)),
+                  DataColumn(label: Text(S.of(context).profit)),
                 ],
                 rows: monthlyIndicators.reversed.map((data) {
                   final indicators = data['indicators'] as EconomicIndicators;

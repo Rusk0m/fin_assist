@@ -2,8 +2,8 @@ import 'package:fin_assist/core/entities/user.dart';
 import 'package:fin_assist/domain/entity/economic_indicators.dart';
 import 'package:fin_assist/domain/entity/financial_report.dart';
 import 'package:fin_assist/domain/services/economic_indicators_service.dart';
+import 'package:fin_assist/generated/l10n.dart';
 import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:fin_assist/presentation/blocs/dashboard_cubit/dashboard_cubit.dart';
 import 'package:fin_assist/presentation/blocs/financial_report_bloc/financial_report_bloc.dart';
 import 'package:fin_assist/presentation/blocs/selection_bloc/selection_bloc.dart';
 import 'package:fin_assist/presentation/blocs/user_bloc/user_bloc.dart';
@@ -70,8 +70,8 @@ class HomeView extends StatelessWidget {
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Добро пожаловать,',
+                Text(
+                  S.of(context).welcome,
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
                 Text(
@@ -129,14 +129,14 @@ class HomeDashboard extends StatelessWidget {
     final latestReport = sortedReports.isNotEmpty ? sortedReports.first : null;
 
     if (latestReport == null) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.description, size: 64, color: Colors.grey),
             SizedBox(height: 16),
             Text(
-              'Нет отчетов за предыдущий период',
+              S.of(context).noReports,
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ],
@@ -152,23 +152,23 @@ class HomeDashboard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Заголовок с периодом
-          _buildHeader(latestReport.period),
+          _buildHeader(latestReport.period,context),
           const SizedBox(height: 20),
 
           // Ключевые финансовые показатели
-          _buildFinancialMetrics(latestReport, indicators),
+          _buildFinancialMetrics(latestReport, indicators,context),
           const SizedBox(height: 20),
 
           // Показатели ликвидности
-          _buildLiquidityMetrics(indicators),
+          _buildLiquidityMetrics(indicators,context),
           const SizedBox(height: 20),
 
           // Показатели рентабельности
-          _buildProfitabilityMetrics(indicators),
+          _buildProfitabilityMetrics(indicators,context),
           const SizedBox(height: 20),
 
           // Показатели задолженности
-          _buildDebtMetrics(indicators),
+          _buildDebtMetrics(indicators,context),
           const SizedBox(height: 20),
 
           // Кнопка быстрого перехода
@@ -178,7 +178,7 @@ class HomeDashboard extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(String period) {
+  Widget _buildHeader(String period,BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -190,8 +190,8 @@ class HomeDashboard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Последний отчетный период',
+                   Text(
+                    S.of(context).lastReportingPeriod,
                     style: TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                   Text(
@@ -210,15 +210,15 @@ class HomeDashboard extends StatelessWidget {
     );
   }
 
-  Widget _buildFinancialMetrics(FinancialReportEntity report, EconomicIndicators indicators) {
+  Widget _buildFinancialMetrics(FinancialReportEntity report, EconomicIndicators indicators,BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              '📊 Основные финансовые показатели',
+            Text(
+              S.of(context).keyFinancialIndicators,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
@@ -226,7 +226,7 @@ class HomeDashboard extends StatelessWidget {
               children: [
                 Expanded(
                   child: _buildMetricItem(
-                    'Выручка',
+                    S.of(context).revenue,
                     '${report.incomeStatement.revenue.toStringAsFixed(0)} ₽',
                     Colors.green,
                     Icons.trending_up,
@@ -234,7 +234,7 @@ class HomeDashboard extends StatelessWidget {
                 ),
                 Expanded(
                   child: _buildMetricItem(
-                    'Чистая прибыль',
+                    S.of(context).netProfit,
                     '${report.incomeStatement.netProfit.toStringAsFixed(0)} ₽',
                     report.incomeStatement.netProfit >= 0 ? Colors.green : Colors.red,
                     Icons.attach_money,
@@ -247,7 +247,7 @@ class HomeDashboard extends StatelessWidget {
               children: [
                 Expanded(
                   child: _buildMetricItem(
-                    'Себестоимость',
+                    S.of(context).costPrice,
                     '${report.incomeStatement.cogs.toStringAsFixed(0)} ₽',
                     Colors.orange,
                     Icons.inventory,
@@ -255,7 +255,7 @@ class HomeDashboard extends StatelessWidget {
                 ),
                 Expanded(
                   child: _buildMetricItem(
-                    'Денежный поток',
+                    S.of(context).cashFlow,
                     '${report.cashFlow.operating.toStringAsFixed(0)} ₽',
                     report.cashFlow.operating >= 0 ? Colors.blue : Colors.red,
                     Icons.account_balance_wallet,
@@ -269,15 +269,15 @@ class HomeDashboard extends StatelessWidget {
     );
   }
 
-  Widget _buildLiquidityMetrics(EconomicIndicators indicators) {
+  Widget _buildLiquidityMetrics(EconomicIndicators indicators,BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              '💧 Показатели ликвидности',
+            Text(
+              S.of(context).liquidityIndicators,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
@@ -285,20 +285,20 @@ class HomeDashboard extends StatelessWidget {
               children: [
                 Expanded(
                   child: _buildIndicatorCard(
-                    'Текущая ликвидность',
+                    S.of(context).currentLiquidity,
                     indicators.liquidityRatio.toStringAsFixed(2),
                     indicators.liquidityRatio > 2 ? Colors.green :
                     indicators.liquidityRatio > 1 ? Colors.orange : Colors.red,
-                    'Норма: > 2.0',
+                    S.of(context).normCurrentLiquidity,
                   ),
                 ),
                 Expanded(
                   child: _buildIndicatorCard(
-                    'Быстрая ликвидность',
+                    S.of(context).fastLiquidity,
                     indicators.quickRatio.toStringAsFixed(2),
                     indicators.quickRatio > 1 ? Colors.green :
                     indicators.quickRatio > 0.5 ? Colors.orange : Colors.red,
-                    'Норма: > 1.0',
+                    S.of(context).normFastLiquidity,
                   ),
                 ),
               ],
@@ -309,15 +309,15 @@ class HomeDashboard extends StatelessWidget {
     );
   }
 
-  Widget _buildProfitabilityMetrics(EconomicIndicators indicators) {
+  Widget _buildProfitabilityMetrics(EconomicIndicators indicators,BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              '📈 Рентабельность',
+            Text(
+              S.of(context).profitability,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
@@ -328,7 +328,7 @@ class HomeDashboard extends StatelessWidget {
                     'ROA',
                     '${(indicators.returnOnAssets * 100).toStringAsFixed(1)}%',
                     indicators.returnOnAssets > 0.05 ? Colors.green : Colors.red,
-                    'Рентабельность активов',
+                    S.of(context).returnOnAssets,
                   ),
                 ),
                 Expanded(
@@ -336,7 +336,7 @@ class HomeDashboard extends StatelessWidget {
                     'ROE',
                     '${(indicators.returnOnEquity * 100).toStringAsFixed(1)}%',
                     indicators.returnOnEquity > 0.1 ? Colors.green : Colors.red,
-                    'Рентабельность капитала',
+                    S.of(context).returnOnCapital,
                   ),
                 ),
               ],
@@ -347,24 +347,24 @@ class HomeDashboard extends StatelessWidget {
     );
   }
 
-  Widget _buildDebtMetrics(EconomicIndicators indicators) {
+  Widget _buildDebtMetrics(EconomicIndicators indicators,BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              '🏦 Финансовая устойчивость',
+            Text(
+              S.of(context).financialStability,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             _buildIndicatorCard(
-              'Долг/Капитал',
+              S.of(context).debtCapital,
               indicators.debtToEquity.toStringAsFixed(2),
               indicators.debtToEquity < 1 ? Colors.green :
               indicators.debtToEquity < 2 ? Colors.orange : Colors.red,
-              'Норма: < 1.0',
+              S.of(context).normDebtCapital,
             ),
           ],
         ),
@@ -430,51 +430,6 @@ class HomeDashboard extends StatelessWidget {
       ),
     );
   }
-
-  /*Widget _buildQuickActions(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              '🚀 Быстрые действия',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Expanded(
-                  child: _buildActionButton(
-                    context,
-                    'Вся аналитика',
-                    Icons.analytics,
-                    Colors.blue,
-                        () {
-                      context.read<DashboardCubit>().setTab(DashboardTab.analytics);
-                    },
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _buildActionButton(
-                    context,
-                    'Все отчеты',
-                    Icons.list_alt,
-                    Colors.green,
-                        () {
-                      context.read<DashboardCubit>().setTab(DashboardTab.reports);
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }*/
 
   Widget _buildActionButton(BuildContext context, String text, IconData icon, Color color, VoidCallback onPressed) {
     return ElevatedButton.icon(

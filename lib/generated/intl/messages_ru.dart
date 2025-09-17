@@ -22,13 +22,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "GrossMargin": MessageLookupByLibrary.simpleMessage("Валовая маржа"),
     "Name": MessageLookupByLibrary.simpleMessage("Имя"),
     "Registration": MessageLookupByLibrary.simpleMessage("Регистрация"),
     "aboutApplication": MessageLookupByLibrary.simpleMessage("О приложении"),
+    "arrears": MessageLookupByLibrary.simpleMessage("Задолженность"),
     "brieflyMust": MessageLookupByLibrary.simpleMessage("Кратк. обяз."),
     "capital": MessageLookupByLibrary.simpleMessage("Капитал"),
+    "cashFlow": MessageLookupByLibrary.simpleMessage("Денежный поток"),
+    "cashResources": MessageLookupByLibrary.simpleMessage("Денежные средства"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Изменить пароль"),
     "coefficient": MessageLookupByLibrary.simpleMessage("Коэффициент"),
+    "costPrice": MessageLookupByLibrary.simpleMessage("Себестоимость"),
+    "currentLiquidity": MessageLookupByLibrary.simpleMessage(
+      "Текущая ликвидность",
+    ),
+    "currentLiquidityRatio": MessageLookupByLibrary.simpleMessage(
+      "Коэффициент текущей ликвидности",
+    ),
     "darkMode": MessageLookupByLibrary.simpleMessage("Тёмная тема"),
     "deactivateMyAccount": MessageLookupByLibrary.simpleMessage(
       "Деактивировать мой аккаунт",
@@ -50,18 +61,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "detailedDebtStatistics": MessageLookupByLibrary.simpleMessage(
       "Детальная статистика задолженности",
     ),
+    "detailedLiquidityStatistics": MessageLookupByLibrary.simpleMessage(
+      "Детальная статистика ликвидности",
+    ),
+    "detailedStatistics": MessageLookupByLibrary.simpleMessage(
+      "Детальная статистика",
+    ),
     "editProfile": MessageLookupByLibrary.simpleMessage(
       "Редактировать профиль",
     ),
     "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
-    "enterNewEmail": MessageLookupByLibrary.simpleMessage("Enter new email"),
-    "enterNewName": MessageLookupByLibrary.simpleMessage("Enter new name"),
+    "enterNewEmail": MessageLookupByLibrary.simpleMessage(
+      "Введите новый email",
+    ),
+    "enterNewName": MessageLookupByLibrary.simpleMessage("Введите новое имя"),
     "errorUpdatingPassword": MessageLookupByLibrary.simpleMessage(
       "Ошибка при обновлении пароля",
     ),
+    "fastLiquidity": MessageLookupByLibrary.simpleMessage(
+      "Быстрая ликвидность",
+    ),
+    "fastLiquor": MessageLookupByLibrary.simpleMessage("Быстр. ликв."),
     "fillInAllFields": MessageLookupByLibrary.simpleMessage(
       "Заполните все поля",
     ),
+    "financialAnalysis": MessageLookupByLibrary.simpleMessage(
+      "Финансовый анализ",
+    ),
+    "financialStability": MessageLookupByLibrary.simpleMessage(
+      "🏦 Финансовая устойчивость",
+    ),
+    "forgotPassword": MessageLookupByLibrary.simpleMessage("Забыли пароль?"),
+    "grossMargin": MessageLookupByLibrary.simpleMessage("Вал. маржа (%)"),
     "haveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Уже есть аккаунт? Войти.",
     ),
@@ -70,18 +101,45 @@ class MessageLookup extends MessageLookupByLibrary {
       "Высокая долговая нагрузка ⚠️",
     ),
     "invalidPassword": MessageLookupByLibrary.simpleMessage("Неверный пароль"),
+    "keyFinancialIndicators": MessageLookupByLibrary.simpleMessage(
+      "📊 Основные финансовые показатели",
+    ),
+    "lastReportingPeriod": MessageLookupByLibrary.simpleMessage(
+      "Последний отчетный период",
+    ),
+    "liquidity": MessageLookupByLibrary.simpleMessage("Ликвидность"),
+    "liquidityAnalysisPeriodMonths": MessageLookupByLibrary.simpleMessage(
+      "Анализ ликвидности (\$period месяцев)",
+    ),
+    "liquidityIndicators": MessageLookupByLibrary.simpleMessage(
+      "💧 Показатели ликвидности",
+    ),
+    "liquidityRatios": MessageLookupByLibrary.simpleMessage(
+      "Коэффициенты ликвидности",
+    ),
     "login": MessageLookupByLibrary.simpleMessage("Войти"),
     "longTerm": MessageLookupByLibrary.simpleMessage("Долгосрочные"),
     "lowDebtBurden": MessageLookupByLibrary.simpleMessage(
       "Низкая долговая нагрузка ✓",
     ),
+    "margin": MessageLookupByLibrary.simpleMessage("Маржа"),
     "moderateDebtBurden": MessageLookupByLibrary.simpleMessage(
       "Умеренная долговая нагрузка",
     ),
     "name": MessageLookupByLibrary.simpleMessage("Имя"),
+    "netMargin": MessageLookupByLibrary.simpleMessage("Чистая маржа"),
+    "netProfit": MessageLookupByLibrary.simpleMessage("Чистая прибыль"),
     "noAccountRegister": MessageLookupByLibrary.simpleMessage(
       "Нет аккаунта? Зарегистрируйтесь.",
     ),
+    "noReports": MessageLookupByLibrary.simpleMessage(
+      "Нет отчетов за предыдущий период",
+    ),
+    "normCurrentLiquidity": MessageLookupByLibrary.simpleMessage(
+      "Норма: > 2.0",
+    ),
+    "normDebtCapital": MessageLookupByLibrary.simpleMessage("Норма: < 1.0"),
+    "normFastLiquidity": MessageLookupByLibrary.simpleMessage("Норма: > 1.0"),
     "notifications": MessageLookupByLibrary.simpleMessage("Уведомления"),
     "numPeriod": MessageLookupByLibrary.simpleMessage(
       "Анализ задолженности (\$period месяцев)",
@@ -93,16 +151,41 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "passwordUpdated": MessageLookupByLibrary.simpleMessage("Пароль обновлён"),
     "period": MessageLookupByLibrary.simpleMessage("Период"),
+    "periodMonth": MessageLookupByLibrary.simpleMessage("\$period месяцев"),
     "profileDetails": MessageLookupByLibrary.simpleMessage("Данные профиля"),
+    "profit": MessageLookupByLibrary.simpleMessage("Прибыль"),
+    "profitMargin": MessageLookupByLibrary.simpleMessage("Маржа прибыли (%)"),
+    "profitability": MessageLookupByLibrary.simpleMessage("📈 Рентабельность"),
+    "profitabilityAnalysisPeriodMonths": MessageLookupByLibrary.simpleMessage(
+      "Анализ рентабельности (\$period месяцев)",
+    ),
+    "quickLiquidityRatio": MessageLookupByLibrary.simpleMessage(
+      "Коэффициент быстрой ликвидности",
+    ),
     "register": MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
     "registration": MessageLookupByLibrary.simpleMessage("Регистрация"),
+    "returnOnAssets": MessageLookupByLibrary.simpleMessage(
+      "Рентабельность активов",
+    ),
+    "returnOnAssetsAndCapital": MessageLookupByLibrary.simpleMessage(
+      "Рентабельность активов и капитала (%)",
+    ),
+    "returnOnCapital": MessageLookupByLibrary.simpleMessage(
+      "Рентабельность капитала",
+    ),
+    "revenue": MessageLookupByLibrary.simpleMessage("Выручка"),
     "settingsTitleAppBar": MessageLookupByLibrary.simpleMessage("Настройки"),
     "shortTerm": MessageLookupByLibrary.simpleMessage("Краткосрочные"),
     "signIn": MessageLookupByLibrary.simpleMessage("Вход"),
+    "signInWithGoogle": MessageLookupByLibrary.simpleMessage(
+      "Войти через гугл?",
+    ),
     "structureOfLiabilities": MessageLookupByLibrary.simpleMessage(
       "Структура обязательств",
     ),
-    "switchLocales": MessageLookupByLibrary.simpleMessage("Switch locales"),
+    "switchLocales": MessageLookupByLibrary.simpleMessage("Изменить язык"),
+    "techAssets": MessageLookupByLibrary.simpleMessage("Тек. активы"),
+    "techLiquor": MessageLookupByLibrary.simpleMessage("Тек. ликв."),
     "totalDebt": MessageLookupByLibrary.simpleMessage("Общий долг"),
     "totalLiabilities": MessageLookupByLibrary.simpleMessage(
       "Всего обязательств",
@@ -110,5 +193,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "veryHighDebtBurden": MessageLookupByLibrary.simpleMessage(
       "Очень высокая долговая нагрузка ❗",
     ),
+    "welcome": MessageLookupByLibrary.simpleMessage("Добро пожаловать,"),
   };
 }

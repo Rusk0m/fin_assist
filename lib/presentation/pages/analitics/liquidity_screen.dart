@@ -1,6 +1,7 @@
 import 'package:fin_assist/domain/entity/economic_indicators.dart';
 import 'package:fin_assist/domain/entity/financial_report.dart';
 import 'package:fin_assist/domain/services/economic_indicators_service.dart';
+import 'package:fin_assist/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -31,35 +32,35 @@ class LiquidityScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Анализ ликвидности ($period месяцев)',
+            S.of(context).liquidityAnalysisPeriodMonths,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
 
           // График ликвидности
-          _buildLiquidityChart(monthlyData),
+          _buildLiquidityChart(monthlyData,context),
           const SizedBox(height: 20),
 
           // Ключевые показатели
-          _buildKeyMetrics(indicatorsService.calculateAggregatedIndicators(reports)),
+          _buildKeyMetrics(indicatorsService.calculateAggregatedIndicators(reports),context),
           const SizedBox(height: 20),
 
           // Детальная таблица
-          _buildDetailedTable(monthlyData),
+          _buildDetailedTable(monthlyData,context),
         ],
       ),
     );
   }
 
-  Widget _buildLiquidityChart(List<_LiquidityChartData> monthlyData) {
+  Widget _buildLiquidityChart(List<_LiquidityChartData> monthlyData, BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Коэффициенты ликвидности',
+            Text(
+              S.of(context).liquidityRatios,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -74,14 +75,14 @@ class LiquidityScreen extends StatelessWidget {
                     dataSource: monthlyData.reversed.toList(),
                     xValueMapper: (_LiquidityChartData data, _) => data.period,
                     yValueMapper: (_LiquidityChartData data, _) => data.currentRatio,
-                    name: 'Текущая ликвидность',
+                    name: S.of(context).currentLiquidity,
                     markerSettings: const MarkerSettings(isVisible: true),
                   ),
                   LineSeries<_LiquidityChartData, String>(
                     dataSource: monthlyData.reversed.toList(),
                     xValueMapper: (_LiquidityChartData data, _) => data.period,
                     yValueMapper: (_LiquidityChartData data, _) => data.quickRatio,
-                    name: 'Быстрая ликвидность',
+                    name: S.of(context).fastLiquidity,
                     markerSettings: const MarkerSettings(isVisible: true),
                   ),
                 ],
@@ -94,24 +95,24 @@ class LiquidityScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildKeyMetrics(EconomicIndicators indicators) {
+  Widget _buildKeyMetrics(EconomicIndicators indicators,BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: _buildMetricCard(
-            'Тек. ликв.',
+            S.of(context).techLiquor,
             indicators.liquidityRatio.toStringAsFixed(2),
             indicators.liquidityRatio > 2 ? Colors.green : Colors.orange,
-            'Коэффициент текущей ликвидности',
+            S.of(context).currentLiquidityRatio,
           ),
         ),
         const SizedBox(width: 12),
         Expanded(
           child: _buildMetricCard(
-            'Быстр. ликв.',
+            S.of(context).fastLiquor,
             indicators.quickRatio.toStringAsFixed(2),
             indicators.quickRatio > 1 ? Colors.green : Colors.orange,
-            'Коэффициент быстрой ликвидности',
+            S.of(context).quickLiquidityRatio,
           ),
         ),
       ],
@@ -149,28 +150,28 @@ class LiquidityScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDetailedTable(List<_LiquidityChartData> monthlyData) {
+  Widget _buildDetailedTable(List<_LiquidityChartData> monthlyData,BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Детальная статистика ликвидности',
+            Text(
+              S.of(context).detailedLiquidityStatistics,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
-                columns: const [
-                  DataColumn(label: Text('Период')),
-                  DataColumn(label: Text('Тек. ликв.')),
-                  DataColumn(label: Text('Быстр. ликв.')),
-                  DataColumn(label: Text('Денежные средства')),
-                  DataColumn(label: Text('Тек. активы')),
-                  DataColumn(label: Text('Кратк. обяз.')),
+                columns:  [
+                  DataColumn(label: Text(S.of(context).period)),
+                  DataColumn(label: Text(S.of(context).techLiquor)),
+                  DataColumn(label: Text(S.of(context).fastLiquor)),
+                  DataColumn(label: Text(S.of(context).cashResources)),
+                  DataColumn(label: Text(S.of(context).techAssets)),
+                  DataColumn(label: Text(S.of(context).brieflyMust)),
                 ],
                 rows: monthlyData.reversed.map((data) {
                   return DataRow(cells: [

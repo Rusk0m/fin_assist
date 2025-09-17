@@ -1,4 +1,5 @@
 import 'package:fin_assist/domain/entity/financial_report.dart';
+import 'package:fin_assist/generated/l10n.dart';
 import 'package:fin_assist/presentation/pages/analitics/duty_screen.dart';
 import 'package:fin_assist/presentation/pages/analitics/liquidity_screen.dart';
 import 'package:fin_assist/presentation/pages/analitics/ros_screen.dart';
@@ -49,7 +50,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> with SingleTickerProvider
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Финансовый анализ'),
+        title: Text(S.of(context).financialAnalysis),
         centerTitle: true,
         actions: [
           PopupMenuButton<int>(
@@ -61,7 +62,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> with SingleTickerProvider
             itemBuilder: (context) => _periodOptions.map((period) {
               return PopupMenuItem(
                 value: period,
-                child: Text('$period месяцев'),
+                child: Text(S.of(context).periodMonth),
               );
             }).toList(),
             icon: const Icon(Icons.calendar_today),
@@ -75,10 +76,10 @@ class _AnalyticsPageState extends State<AnalyticsPage> with SingleTickerProvider
         ],
         bottom: TabBar(
           controller: _tabController,
-          tabs: const [
-            Tab(text: 'Рентабельность'),
-            Tab(text: 'Ликвидность'),
-            Tab(text: 'Задолженность'),
+          tabs:  [
+            Tab(text: S.of(context).profitability),
+            Tab(text: S.of(context).liquidity),
+            Tab(text: S.of(context).arrears),
           ],
         ),
       ),

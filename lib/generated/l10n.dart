@@ -54,34 +54,9 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `SignIn`
+  /// `Sign In`
   String get signIn {
-    return Intl.message('SignIn', name: 'signIn', desc: '', args: []);
-  }
-
-  /// `Forgot Password?`
-  String get forgotPassword {
-    return Intl.message(
-      'Forgot Password?',
-      name: 'forgotPassword',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sign in with Google`
-  String get signInWithGoogle {
-    return Intl.message(
-      'Sign in with Google',
-      name: 'signInWithGoogle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password`
-  String get password {
-    return Intl.message('Password', name: 'password', desc: '', args: []);
+    return Intl.message('Sign In', name: 'signIn', desc: '', args: []);
   }
 
   /// `Email`
@@ -99,9 +74,29 @@ class S {
     );
   }
 
-  /// `Login`
+  /// `Log In`
   String get login {
-    return Intl.message('Login', name: 'login', desc: '', args: []);
+    return Intl.message('Log In', name: 'login', desc: '', args: []);
+  }
+
+  /// `Forgot password?`
+  String get forgotPassword {
+    return Intl.message(
+      'Forgot password?',
+      name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in with Google?`
+  String get signInWithGoogle {
+    return Intl.message(
+      'Sign in with Google?',
+      name: 'signInWithGoogle',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `No account? Register.`
@@ -144,6 +139,11 @@ class S {
     return Intl.message('Name', name: 'name', desc: '', args: []);
   }
 
+  /// `Password`
+  String get password {
+    return Intl.message('Password', name: 'password', desc: '', args: []);
+  }
+
   /// `Fill in all fields`
   String get fillInAllFields {
     return Intl.message(
@@ -159,10 +159,10 @@ class S {
     return Intl.message('Register', name: 'register', desc: '', args: []);
   }
 
-  /// `Already have an account? Login.`
+  /// `Already have an account? Sign in.`
   String get haveAnAccount {
     return Intl.message(
-      'Already have an account? Login.',
+      'Already have an account? Sign in.',
       name: 'haveAnAccount',
       desc: '',
       args: [],
@@ -209,9 +209,9 @@ class S {
     );
   }
 
-  /// `Dark mode`
+  /// `Dark theme`
   String get darkMode {
-    return Intl.message('Dark mode', name: 'darkMode', desc: '', args: []);
+    return Intl.message('Dark theme', name: 'darkMode', desc: '', args: []);
   }
 
   /// `About application`
@@ -239,20 +239,10 @@ class S {
     );
   }
 
-  /// `Organization`
-  String get organization {
-    return Intl.message(
-      'Organization',
-      name: 'organization',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Change Password`
+  /// `Change password`
   String get changePassword {
     return Intl.message(
-      'Change Password',
+      'Change password',
       name: 'changePassword',
       desc: '',
       args: [],
@@ -289,20 +279,20 @@ class S {
     );
   }
 
-  /// `Error Updating Password`
+  /// `Error updating password`
   String get errorUpdatingPassword {
     return Intl.message(
-      'Error Updating Password',
+      'Error updating password',
       name: 'errorUpdatingPassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Switch locales`
+  /// `Change language`
   String get switchLocales {
     return Intl.message(
-      'Switch locales',
+      'Change language',
       name: 'switchLocales',
       desc: '',
       args: [],
@@ -329,184 +319,529 @@ class S {
     );
   }
 
-  /// `Анализ задолженности ($period месяцев)`
+  /// `Debt analysis ($period months)`
   String get numPeriod {
     return Intl.message(
-      'Анализ задолженности (\$period месяцев)',
+      'Debt analysis (\$period months)',
       name: 'numPeriod',
       desc: '',
       args: [],
     );
   }
 
-  /// `Отношение долга к собственному капиталу`
+  /// `Debt to equity ratio`
   String get debtToCapital {
     return Intl.message(
-      'Отношение долга к собственному капиталу',
+      'Debt to equity ratio',
       name: 'debtToCapital',
       desc: '',
       args: [],
     );
   }
 
-  /// `Структура обязательств`
+  /// `Liabilities structure`
   String get structureOfLiabilities {
     return Intl.message(
-      'Структура обязательств',
+      'Liabilities structure',
       name: 'structureOfLiabilities',
       desc: '',
       args: [],
     );
   }
 
-  /// `Краткосрочные`
+  /// `Short-term`
   String get shortTerm {
-    return Intl.message('Краткосрочные', name: 'shortTerm', desc: '', args: []);
+    return Intl.message('Short-term', name: 'shortTerm', desc: '', args: []);
   }
 
-  /// `Долг/Кап.`
+  /// `Debt/Cap.`
   String get debitCapital {
-    return Intl.message('Долг/Кап.', name: 'debitCapital', desc: '', args: []);
+    return Intl.message('Debt/Cap.', name: 'debitCapital', desc: '', args: []);
   }
 
-  /// `Отношение долга к капиталу`
+  /// `Debt to equity ratio`
   String get debtToEquityRatio {
     return Intl.message(
-      'Отношение долга к капиталу',
+      'Debt to equity ratio',
       name: 'debtToEquityRatio',
       desc: '',
       args: [],
     );
   }
 
-  /// `Общий долг`
+  /// `Total debt`
   String get totalDebt {
-    return Intl.message('Общий долг', name: 'totalDebt', desc: '', args: []);
+    return Intl.message('Total debt', name: 'totalDebt', desc: '', args: []);
   }
 
-  /// `Всего обязательств`
+  /// `Total liabilities`
   String get totalLiabilities {
     return Intl.message(
-      'Всего обязательств',
+      'Total liabilities',
       name: 'totalLiabilities',
       desc: '',
       args: [],
     );
   }
 
-  /// `Долг/Активы`
+  /// `Debt/Assets`
   String get debtAssets {
-    return Intl.message('Долг/Активы', name: 'debtAssets', desc: '', args: []);
+    return Intl.message('Debt/Assets', name: 'debtAssets', desc: '', args: []);
   }
 
-  /// `Доля долга в активах`
+  /// `Debt to assets ratio`
   String get debtToAssetsRatio {
     return Intl.message(
-      'Доля долга в активах',
+      'Debt to assets ratio',
       name: 'debtToAssetsRatio',
       desc: '',
       args: [],
     );
   }
 
-  /// `Долгосрочные`
+  /// `Long-term`
   String get longTerm {
-    return Intl.message('Долгосрочные', name: 'longTerm', desc: '', args: []);
+    return Intl.message('Long-term', name: 'longTerm', desc: '', args: []);
   }
 
-  /// `Коэффициент`
+  /// `Coefficient`
   String get coefficient {
-    return Intl.message('Коэффициент', name: 'coefficient', desc: '', args: []);
+    return Intl.message('Coefficient', name: 'coefficient', desc: '', args: []);
   }
 
-  /// `Долг/Капитал`
+  /// `Debt/Capital`
   String get debtCapital {
     return Intl.message(
-      'Долг/Капитал',
+      'Debt/Capital',
       name: 'debtCapital',
       desc: '',
       args: [],
     );
   }
 
-  /// `Низкая долговая нагрузка ✓`
+  /// `Low debt burden ✓`
   String get lowDebtBurden {
     return Intl.message(
-      'Низкая долговая нагрузка ✓',
+      'Low debt burden ✓',
       name: 'lowDebtBurden',
       desc: '',
       args: [],
     );
   }
 
-  /// `Умеренная долговая нагрузка`
+  /// `Moderate debt burden`
   String get moderateDebtBurden {
     return Intl.message(
-      'Умеренная долговая нагрузка',
+      'Moderate debt burden',
       name: 'moderateDebtBurden',
       desc: '',
       args: [],
     );
   }
 
-  /// `Высокая долговая нагрузка ⚠️`
+  /// `High debt burden ⚠️`
   String get highDebtBurden {
     return Intl.message(
-      'Высокая долговая нагрузка ⚠️',
+      'High debt burden ⚠️',
       name: 'highDebtBurden',
       desc: '',
       args: [],
     );
   }
 
-  /// `Очень высокая долговая нагрузка ❗`
+  /// `Very high debt burden ❗`
   String get veryHighDebtBurden {
     return Intl.message(
-      'Очень высокая долговая нагрузка ❗',
+      'Very high debt burden ❗',
       name: 'veryHighDebtBurden',
       desc: '',
       args: [],
     );
   }
 
-  /// `Детальная статистика задолженности`
+  /// `Detailed debt statistics`
   String get detailedDebtStatistics {
     return Intl.message(
-      'Детальная статистика задолженности',
+      'Detailed debt statistics',
       name: 'detailedDebtStatistics',
       desc: '',
       args: [],
     );
   }
 
-  /// `Период`
+  /// `Period`
   String get period {
-    return Intl.message('Период', name: 'period', desc: '', args: []);
+    return Intl.message('Period', name: 'period', desc: '', args: []);
   }
 
-  /// `Долг/Кап.`
+  /// `Debt/Cap.`
   String get debtCap {
-    return Intl.message('Долг/Кап.', name: 'debtCap', desc: '', args: []);
+    return Intl.message('Debt/Cap.', name: 'debtCap', desc: '', args: []);
   }
 
-  /// `Кратк. обяз.`
+  /// `Short-term oblig.`
   String get brieflyMust {
     return Intl.message(
-      'Кратк. обяз.',
+      'Short-term oblig.',
       name: 'brieflyMust',
       desc: '',
       args: [],
     );
   }
 
-  /// `Долг. обяз.`
+  /// `Long-term oblig.`
   String get debtMust {
-    return Intl.message('Долг. обяз.', name: 'debtMust', desc: '', args: []);
+    return Intl.message(
+      'Long-term oblig.',
+      name: 'debtMust',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `Капитал`
+  /// `Capital`
   String get capital {
-    return Intl.message('Капитал', name: 'capital', desc: '', args: []);
+    return Intl.message('Capital', name: 'capital', desc: '', args: []);
+  }
+
+  /// `Welcome,`
+  String get welcome {
+    return Intl.message('Welcome,', name: 'welcome', desc: '', args: []);
+  }
+
+  /// `No reports for the previous period`
+  String get noReports {
+    return Intl.message(
+      'No reports for the previous period',
+      name: 'noReports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last reporting period`
+  String get lastReportingPeriod {
+    return Intl.message(
+      'Last reporting period',
+      name: 'lastReportingPeriod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `📊 Key financial indicators`
+  String get keyFinancialIndicators {
+    return Intl.message(
+      '📊 Key financial indicators',
+      name: 'keyFinancialIndicators',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Revenue`
+  String get revenue {
+    return Intl.message('Revenue', name: 'revenue', desc: '', args: []);
+  }
+
+  /// `Net profit`
+  String get netProfit {
+    return Intl.message('Net profit', name: 'netProfit', desc: '', args: []);
+  }
+
+  /// `Cost of goods sold`
+  String get costPrice {
+    return Intl.message(
+      'Cost of goods sold',
+      name: 'costPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cash flow`
+  String get cashFlow {
+    return Intl.message('Cash flow', name: 'cashFlow', desc: '', args: []);
+  }
+
+  /// `💧 Liquidity indicators`
+  String get liquidityIndicators {
+    return Intl.message(
+      '💧 Liquidity indicators',
+      name: 'liquidityIndicators',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current liquidity`
+  String get currentLiquidity {
+    return Intl.message(
+      'Current liquidity',
+      name: 'currentLiquidity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quick liquidity`
+  String get fastLiquidity {
+    return Intl.message(
+      'Quick liquidity',
+      name: 'fastLiquidity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Norm: > 2.0`
+  String get normCurrentLiquidity {
+    return Intl.message(
+      'Norm: > 2.0',
+      name: 'normCurrentLiquidity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Norm: > 1.0`
+  String get normFastLiquidity {
+    return Intl.message(
+      'Norm: > 1.0',
+      name: 'normFastLiquidity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `📈 Profitability`
+  String get profitability {
+    return Intl.message(
+      '📈 Profitability',
+      name: 'profitability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return on assets`
+  String get returnOnAssets {
+    return Intl.message(
+      'Return on assets',
+      name: 'returnOnAssets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return on capital`
+  String get returnOnCapital {
+    return Intl.message(
+      'Return on capital',
+      name: 'returnOnCapital',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `🏦 Financial stability`
+  String get financialStability {
+    return Intl.message(
+      '🏦 Financial stability',
+      name: 'financialStability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Norm: < 1.0`
+  String get normDebtCapital {
+    return Intl.message(
+      'Norm: < 1.0',
+      name: 'normDebtCapital',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Financial analysis`
+  String get financialAnalysis {
+    return Intl.message(
+      'Financial analysis',
+      name: 'financialAnalysis',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `$period months`
+  String get periodMonth {
+    return Intl.message(
+      '\$period months',
+      name: 'periodMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Liquidity`
+  String get liquidity {
+    return Intl.message('Liquidity', name: 'liquidity', desc: '', args: []);
+  }
+
+  /// `Debt`
+  String get arrears {
+    return Intl.message('Debt', name: 'arrears', desc: '', args: []);
+  }
+
+  /// `Liquidity analysis ($period months)`
+  String get liquidityAnalysisPeriodMonths {
+    return Intl.message(
+      'Liquidity analysis (\$period months)',
+      name: 'liquidityAnalysisPeriodMonths',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Liquidity ratios`
+  String get liquidityRatios {
+    return Intl.message(
+      'Liquidity ratios',
+      name: 'liquidityRatios',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Curr. liq.`
+  String get techLiquor {
+    return Intl.message('Curr. liq.', name: 'techLiquor', desc: '', args: []);
+  }
+
+  /// `Current ratio`
+  String get currentLiquidityRatio {
+    return Intl.message(
+      'Current ratio',
+      name: 'currentLiquidityRatio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quick liq.`
+  String get fastLiquor {
+    return Intl.message('Quick liq.', name: 'fastLiquor', desc: '', args: []);
+  }
+
+  /// `Quick ratio`
+  String get quickLiquidityRatio {
+    return Intl.message(
+      'Quick ratio',
+      name: 'quickLiquidityRatio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Detailed liquidity statistics`
+  String get detailedLiquidityStatistics {
+    return Intl.message(
+      'Detailed liquidity statistics',
+      name: 'detailedLiquidityStatistics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cash`
+  String get cashResources {
+    return Intl.message('Cash', name: 'cashResources', desc: '', args: []);
+  }
+
+  /// `Current assets`
+  String get techAssets {
+    return Intl.message(
+      'Current assets',
+      name: 'techAssets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profitability analysis ($period months)`
+  String get profitabilityAnalysisPeriodMonths {
+    return Intl.message(
+      'Profitability analysis (\$period months)',
+      name: 'profitabilityAnalysisPeriodMonths',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return on assets and capital (%)`
+  String get returnOnAssetsAndCapital {
+    return Intl.message(
+      'Return on assets and capital (%)',
+      name: 'returnOnAssetsAndCapital',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profit margin (%)`
+  String get profitMargin {
+    return Intl.message(
+      'Profit margin (%)',
+      name: 'profitMargin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gross margin`
+  String get GrossMargin {
+    return Intl.message(
+      'Gross margin',
+      name: 'GrossMargin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Net margin`
+  String get netMargin {
+    return Intl.message('Net margin', name: 'netMargin', desc: '', args: []);
+  }
+
+  /// `Margin`
+  String get margin {
+    return Intl.message('Margin', name: 'margin', desc: '', args: []);
+  }
+
+  /// `Detailed statistics`
+  String get detailedStatistics {
+    return Intl.message(
+      'Detailed statistics',
+      name: 'detailedStatistics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gross margin (%)`
+  String get grossMargin {
+    return Intl.message(
+      'Gross margin (%)',
+      name: 'grossMargin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profit`
+  String get profit {
+    return Intl.message('Profit', name: 'profit', desc: '', args: []);
   }
 }
 

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fin_assist/di.dart';
 import 'package:fin_assist/domain/use_case/financial_report_use_case/get_latest_report_usecase.dart';
 import 'package:fin_assist/domain/use_case/financial_report_use_case/get_report_by_period_usecase.dart';
 import 'package:fin_assist/domain/use_case/financial_report_use_case/get_reports_by_branch_usecase.dart';
@@ -63,9 +64,11 @@ class FinancialReportBloc extends Bloc<FinancialReportEvent, FinancialReportStat
       GetReportsByBranchEvent event,
       Emitter<FinancialReportState> emit,
       ) async {
+    print("📌 FinancialReportBloc получил branchId: ${event.branchId}");
     emit(FinancialReportLoading());
     try {
-      final reports = await GetIt.instance<GetReportsByBranchUseCase>().call(event.branchId);
+      final reports = await getIt<GetReportsByBranchUseCase>().call(event.branchId);
+      print(reports);
       emit(FinancialReportsLoadedState(reports!));
     } catch (e) {
       print('FinancialReportBloc: Error loading reports by branch: $e');

@@ -33,7 +33,7 @@ class RootPage extends StatelessWidget {
               Navigator.pushNamedAndRemoveUntil(
                 context,
                 '/report_selection_page',
-                    (route) => false,
+                  (roure) => false
               );
             }
           },

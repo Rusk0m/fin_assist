@@ -1,6 +1,6 @@
-import 'package:fin_assist/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:fin_assist/presentation/blocs/dashboard_cubit/dashboard_cubit.dart';
-import 'package:fin_assist/presentation/pages/analytics_page.dart';
+import 'package:fin_assist/presentation/blocs/financial_report_bloc/financial_report_bloc.dart';
+import 'package:fin_assist/presentation/pages/analitics/analytics_page.dart';
 import 'package:fin_assist/presentation/pages/home_page.dart';
 import 'package:fin_assist/presentation/pages/report_list/report_list_page.dart';
 import 'package:flutter/material.dart';
@@ -24,15 +24,16 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedTab = context.select(
-      (DashboardCubit cubit) => cubit.state.tab,
+          (DashboardCubit cubit) => cubit.state.tab,
     );
+
     return Scaffold(
       body: IndexedStack(
         index: selectedTab.index,
         children: [
-          HomePage(),
-          ReportListPage(),
-          AnalyticsPage(),
+          const HomePage(),
+          const ReportListPage(),
+          _buildAnalyticsPage(context), // Изменено здесь
         ],
       ),
       bottomNavigationBar: Container(
@@ -50,10 +51,28 @@ class DashboardView extends StatelessWidget {
               icon: Icon(Icons.list_alt),
               label: 'Reports',
             ),
-            BottomNavigationBarItem(icon: Icon(Icons.analytics),label: 'Analytics')
+            BottomNavigationBarItem(
+                icon: Icon(Icons.analytics),
+                label: 'Analytics'
+            )
           ],
         ),
       ),
+    );
+  }
+
+  // Новый метод для построения AnalyticsPage с данными
+  Widget _buildAnalyticsPage(BuildContext context) {
+    return BlocBuilder<FinancialReportBloc, FinancialReportState>(
+      builder: (context, reportState) {
+        if (reportState is FinancialReportsLoadedState) {
+          return AnalyticsPage(reports: reportState.reports);
+        } else if (reportState is FinancialReportErrorState) {
+          return Center(child: Text('Error: ${reportState.message}'));
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
     );
   }
 }

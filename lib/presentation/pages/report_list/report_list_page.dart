@@ -43,6 +43,12 @@ class ReportListView extends StatelessWidget {
 
   final List<FinancialReportEntity> reports;
 
+  List<FinancialReportEntity> get sortedReports {
+    final sorted = List<FinancialReportEntity>.from(reports);
+    sorted.sort((a, b) => b.period.compareTo(a.period)); // DESC
+    return sorted;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,15 +66,14 @@ class ReportListView extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const SearchBar(),
           Expanded(
             child: ListView.builder(
               itemCount: reports.length,
               itemBuilder: (context, index) {
-                final report = reports[index];
+                final report = sortedReports[index];
                 return ListTile(
                   title: Text("Отчёт: ${report.period}"),
-                  subtitle: Text("ID: ${report.reportId}"),
+                  subtitle: Text(report.status),
                   onTap: () {
                     Navigator.pushNamed(
                       context,

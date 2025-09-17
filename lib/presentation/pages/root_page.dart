@@ -30,9 +30,10 @@ class RootPage extends StatelessWidget {
         BlocListener<UserBloc, UserState>(
           listener: (context, state) {
             if (state is UserLoaded) {
-              Navigator.pushNamed(
+              Navigator.pushNamedAndRemoveUntil(
                 context,
                 '/report_selection_page',
+                  (roure) => false
               );
             }
           },
